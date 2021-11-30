@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="/script/main.js"></script>
+<script src="/script/product/read.js"></script>
+
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/product_read.css">
+<!-- main.js 내부에 두면 sec:authorize를 이해못하는 자바스크립트에 의해 무조건 실행되버린다 -->
+<script sec:authorize="isAuthenticated()" src="/script/websocket.js"></script>
+<script sec:authorize="isAuthenticated()">
+	const isLogin = true
+</script>
+<script sec:authorize="isAnonymous()">
+	const isLogin = false;
+</script>
+<style type="text/css">
+#left  img {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-ms-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s;
+}
+
+#left:hover img {
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+#name {
+	border-bottom: 1px solid;
+	border-bottom-color: #dcdcdc;
+}
+
+#left {
+	float: left;
+	width: 500px;
+	margin-left: 100px;
+}
+
+#right {
+	float: right;
+	width: 256px;
+	margin-right: 100px;
+}
+
+#section {
+	overflow: hidden; /* float를 clear하는 방법   */
+}
+
+.count {
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	text-align: center;
+	font-size: 1.25em;
+}
+
+.plus, .minus, #plus, #minus {
+	background-color: #ddd;
+	/* color를 16진수로 지정. 16진수로 지정할 때 #555555 -> #555로 줄여쓸 수 있다 */
+	cursor: pointer;
+}
+
+#manufacturer, #name {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #222;
+}
+
+#price {
+	margin-top: 12px;
+	font-size: 20px;
+	color: black; /* color를 10진수로 지정. rgb, rgba 두 가지.*/
+	font-weight: 700;
+	text-align: left;
+}
+
+#total_price {
+	font-size: 1.85em; /* em은 퍼센트(175%). %는 문서 원래 크기 기준. em은 부모 기준.*/
+	font-weight: bold;
+	color: #AE0000;
+}
+
+#buy, #add_to_cart {
+	width: 125px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	/* 버튼을 커스터마이즈할 때 외곽선 */
+	border: 0;
+	outline: 0;
+}
+
+#buy {
+	background-color: #346aff;
+}
+
+#add_to_cart {
+	background-color: white;
+	color: #346aff;
+	border: solid 1px;
+}
+
+ul.list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #ccc;
+}
+
+ul.list::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.tab-button {
+	display: block;
+	padding: 10px 20px 10px 20px;
+	float: left;
+	margin-right: -1px;
+	margin-bottom: -1px;
+	color: grey;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.active {
+	border-top: 2px solid orange;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid white;
+	border-left: 1px solid #ccc;
+	color: black;
+	margin-top: -2px;
+}
+
+.tab-content {
+	display: none;
+	padding: 10px;
+}
+
+.show {
+	display: block;
+}
+
+.mt-5 {
+	height: auto;
+}
+</style>
+</head>
+<body>
+	<div id="page" style="height: 2000px;">
+		<div id="username" sec:authentication="name" style="display: none;"></div>
+		<header id="header" th:replace="/fragments/headerStore"> </header>
+		<nav id="nav" th:replace="/fragments/navStore"></nav>
+		<div id="main">
+
+			<section id="section">
+				<div id="left">
+					<img id="image" style="width: 100%">
+				</div>
+				<div id="right">
+					<div id="manufacturer"></div>
+					<div id="name"></div>
+					<div id="price">
+						가격 : <span></span>원
+					</div>
+
+					<!-- 옵션이 없는 경우 바로 개수 선택 div -->
+					<hr>
+					<div id="product_div">
+						<button class='count' id='dec'>-</button>
+						<div class='count number' id='count'></div>
+						<button class='count' id='inc'>+</button>
+					</div>
+
+					<!-- 옵션이 있는 경우 화면 -->
+					<div style="display: none;" id="option_div">
+						<select id="options_select" class="form-control">
+						</select>
+					</div>
+					<hr>
+
+					<!-- select에서 선택한 옵션을 출력하는 부분 -->
+					<div id="selected_options_div"></div>
+
+
+					<div id="price_div" style="overflow: hidden; height: 60px;">
+						<div style="font-weight: bold; font-size: 1.25em; float: left;">총
+							금액</div>
+						<div style="float: right; margin-top: 30px;">
+
+							<span style="color: #999">수량<span id="total_count"></span>개
+							</span><span><span id="total_price"></span>원</span>
+						</div>
+					</div>
+					<hr>
+					<div>
+						<button id="buy" sec:authorize="isAuthenticated()">구매하기</button>
+						<button id="add_to_cart" sec:authorize="isAuthenticated()">장바구니</button>
+						<p sec:authorize="isAnonymous()"
+							style="color: blue; font-size: 1.25em;">로그인하셔야 주문가능합니다</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="container mt-5">
+				<ul class="list">
+					<li class="tab-button" data-id="0">Products</li>
+					<li class="tab-button" data-id="1">Information</li>
+					<li class="tab-button" data-id="2">Shipping</li>
+					<li class="tab-button" data-id="3">Star rating</li>
+				</ul>
+				<div class="tab-content ">
+					<p>상품설명입니다. Product</p>
+				</div>
+				<div class="tab-content">
+					<p>상품정보입니다. Info</p>
+				</div>
+				<div class="tab-content">
+					<p>배송정보입니다. Shipping</p>
+				</div>
+				<div class="tab-content" >
+					<h2 class="avgStarH2">평균 별점</h2>
+					<div class="review">
+						<div class="rating" id=rating></div>
+					</div>
+					<div id="review" th:replace="/product/reviewList"></div>
+				</div>
+			</div>
+		</div>
+		<footer id="footer" th:replace="/fragments/footer"> </footer>
+	</div>
+	<script type="text/javascript">
+	
+
+	
+	
+	
+$('.list').click(function(e){
+    // if(내가 실제 누른 요소가 버튼 0이면)
+    // 탭0번째 열어주셈
+    // if(e.target == document.querySelectorAll('.tab-button')[0]){
+    //     탭열기(0);
+    // } 
+    openTab(e.target.dataset.id ) 
+});
+
+
+//jQuery 
+$('.list').data('name','val');
+$('.list').data('name')
+
+function openTab (num) {
+    $('.tab-button').removeClass('active');
+    $('.tab-content').removeClass('show');
+    $('.tab-button').eq(num).addClass('active');
+    $('.tab-content').eq(num).addClass('show');
+}
+
+	
+
+</script>
+</body>
+</html>

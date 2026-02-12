@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  oracle-xe:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: cdmall-oracle
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+      APP_USER: ${ORACLE_APP_USER}
+      APP_USER_PASSWORD: ${ORACLE_APP_PASSWORD}
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
+  app:
+    build: .
+    container_name: cdmall-app
+    depends_on:
+      - oracle-xe
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:log4jdbc:oracle:thin:@oracle-xe:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: ${ORACLE_APP_USER}
+      SPRING_DATASOURCE_PASSWORD: ${ORACLE_APP_PASSWORD}
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+      RESOURCE_PATH: file:/app/upload/
+      UPLOAD_PATH: /upload/**
+    ports:
+      - "8080:8080"
+    volumes:
+      - app-upload:/app/upload
+
+volumes:
+  oracle-data:
+  app-upload:

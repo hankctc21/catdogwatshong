@@ -4,10 +4,13 @@ services:
   oracle-xe:
     image: gvenzl/oracle-xe:21-slim
     container_name: cdmall-oracle
+    shm_size: "1gb"
     environment:
       ORACLE_PASSWORD: ${ORACLE_PASSWORD}
       APP_USER: ${ORACLE_APP_USER}
       APP_USER_PASSWORD: ${ORACLE_APP_PASSWORD}
+      INIT_SGA_SIZE: 256
+      INIT_PGA_SIZE: 128
     ports:
       - "1521:1521"
     volumes:

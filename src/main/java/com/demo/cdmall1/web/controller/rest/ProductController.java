@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.*;
 import java.security.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -33,11 +34,20 @@ public class ProductController {
 	private String productImageDir;
 	// 이미지 첨부파일 보기
 	@GetMapping(path={"/products/image", "/ptemp/image"})
-	public ResponseEntity<?> showImage(@RequestParam String imagename, HttpServletRequest req) throws IOException {
+	public ResponseEntity<?> showImage(@RequestParam String imagename, HttpServletRequest req) {
 		String command = req.getRequestURI().substring(1, req.getRequestURI().lastIndexOf("/"));
 		File file = new File(ZmallConstant.TEMP_FOLDER + imagename);
 		if(command.equals("products")) {
 			file = new File(productImageDir, imagename);
+		}
+		if(!file.exists()) {
+			String svg = "<svg xmlns='http://www.w3.org/2000/svg' width='300' height='200'>"
+					+ "<rect width='100%' height='100%' fill='#f2f4f7'/>"
+					+ "<text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' "
+					+ "font-size='18' fill='#667085'>이미지없음</text></svg>";
+			HttpHeaders notFoundImageHeaders = new HttpHeaders();
+			notFoundImageHeaders.setContentType(MediaType.parseMediaType("image/svg+xml;charset=UTF-8"));
+			return ResponseEntity.ok().headers(notFoundImageHeaders).body(svg.getBytes(StandardCharsets.UTF_8));
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(ZmallUtil.getMediaType(imagename));
@@ -45,9 +55,8 @@ public class ProductController {
 		try {
 			return ResponseEntity.ok().headers(headers).body(Files.readAllBytes(file.toPath()));
 		} catch (IOException e) {
-			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
-		return null;
 	}
 	
 	

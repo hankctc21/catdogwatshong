@@ -207,9 +207,9 @@
 <body>
 	<div id="page">
 		<div id="username" sec:authentication="name" style="display: none;"></div>
-		<nav id="nav" th:replace="/fragments/nav"></nav>
+		<nav id="nav" th:replace="fragments/nav"></nav>
 		<div id="main">
-			<aside id="aside" th:replace="/fragments/aside"></aside>
+			<aside id="aside" th:replace="fragments/aside"></aside>
 			<section id="section">
 				<div class="map_wrap">
 					<div id="map"
@@ -484,7 +484,7 @@
 
 			</section>
 		</div>
-		<footer id="footer" th:replace="/fragments/footer"> </footer>
+		<footer id="footer" th:replace="fragments/footer"> </footer>
 	</div>
 </body>
 </html>

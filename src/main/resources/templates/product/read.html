@@ -176,8 +176,8 @@ ul.list::after {
 <body>
 	<div id="page" style="height: 2000px;">
 		<div id="username" sec:authentication="name" style="display: none;"></div>
-		<header id="header" th:replace="/fragments/headerStore"> </header>
-		<nav id="nav" th:replace="/fragments/navStore"></nav>
+		<header id="header" th:replace="fragments/headerStore"> </header>
+		<nav id="nav" th:replace="fragments/navStore"></nav>
 		<div id="main">
 
 			<section id="section">
@@ -284,7 +284,7 @@ ul.list::after {
 				</div>
 			</div>
 		</div>
-		<footer id="footer" th:replace="/fragments/footer"> </footer>
+		<footer id="footer" th:replace="fragments/footer"> </footer>
 	</div>
 	<script type="text/javascript">
 	

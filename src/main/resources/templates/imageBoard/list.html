@@ -234,8 +234,8 @@
 <body>
 <div id="page">
 	<div id="username" sec:authentication="name" style="display:none;"></div>
-	<header id="header" th:replace="/fragments/headerBoard"> </header>
-	<nav id="nav" th:replace="/fragments/navBoard"></nav>
+	<header id="header" th:replace="fragments/headerBoard"> </header>
+	<nav id="nav" th:replace="fragments/navBoard"></nav>
 		<div id="communitypic">사 진 게 시 판</div>
 
 		<div id="main" class="image_button" >
@@ -283,7 +283,7 @@
 			</section>
 		</div>
 
-		<footer id="footer" th:replace="/fragments/footer"> </footer>
+		<footer id="footer" th:replace="fragments/footer"> </footer>
 	</div>
 	<script type="text/javascript">
 	$( '.top' ).click( function() {

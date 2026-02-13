@@ -15,7 +15,7 @@ public class MemberMvcController {
 			model.addAttribute("msg", session.getAttribute("msg"));
 			session.removeAttribute("msg");
 		}
-		return "/index";
+		return "index";
 	}
 	
 	@GetMapping("/boardMain")
@@ -24,7 +24,7 @@ public class MemberMvcController {
 			model.addAttribute("msg", session.getAttribute("msg"));
 			session.removeAttribute("msg");
 		}
-		return "/boardIndex";
+		return "boardIndex";
 	}
 
 	
@@ -56,7 +56,7 @@ public class MemberMvcController {
 		// 비밀번호 확인 여부를 체크해서 확인을 이미 했다면 read로 보내버리자
 		if(session.getAttribute("passwordCheck")!=null)
 			return "redirect:/member/read";
-		return "/member/password_check";
+		return "member/password_check";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
@@ -65,19 +65,19 @@ public class MemberMvcController {
 		// 비밀번호 확인 여부를 체크해서 확인을 안했다면 read로 보내버리자
 		if(session.getAttribute("passwordCheck")==null)
 			return "redirect:/member/password_check";
-		return "/member/read";
+		return "member/read";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/member/pet")
 	public String pet() {
-		return "/member/pet";
+		return "member/pet";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/member/pet_add")
 	public String pet_add() {
-		return "/member/pet_add";
+		return "member/pet_add";
 	}
 	
 	@PreAuthorize("isAuthenticated()")

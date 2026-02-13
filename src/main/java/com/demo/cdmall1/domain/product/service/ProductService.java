@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.data.domain.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.*;
@@ -22,6 +23,8 @@ public class ProductService {
 	private final ProductRepository dao;
 	private final ProductMemberRepository pmdao;
 	private final ProductDslRepository dslDao;
+	@Value("${app.upload.productimage-dir:/app/upload/productimage}")
+	private String productImageDir;
 	
 	public Product insert(ProductDto.Write dto, String name ) {
 		Product product = dto.toEntity();
@@ -33,7 +36,11 @@ public class ProductService {
 		// 저장할 파일 이름을 지정(현재시간을 1/1000초 단위로 계산)
 			
 		String saveFileName = System.currentTimeMillis() + "-" + uploadFile.getOriginalFilename();
-		File saveFile = new File(ZmallConstant.PRODIMAGE_FOLDER, saveFileName);
+		File uploadDir = new File(productImageDir);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+		File saveFile = new File(uploadDir, saveFileName);
 		product.setImageFileName(saveFileName);
 		try {
 			uploadFile.transferTo(saveFile);

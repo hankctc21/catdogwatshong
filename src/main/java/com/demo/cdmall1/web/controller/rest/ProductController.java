@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.validation.*;
 
 import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.*;
 import org.springframework.validation.BindException;
@@ -28,13 +29,15 @@ import lombok.*;
 public class ProductController {
 	private final ProductService service;
 	private final ReviewService reviewService;
+	@Value("${app.upload.productimage-dir:/app/upload/productimage}")
+	private String productImageDir;
 	// 이미지 첨부파일 보기
-	@GetMapping(path={"/products/image", "/ptemp/image"}, produces=MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(path={"/products/image", "/ptemp/image"})
 	public ResponseEntity<?> showImage(@RequestParam String imagename, HttpServletRequest req) throws IOException {
 		String command = req.getRequestURI().substring(1, req.getRequestURI().lastIndexOf("/"));
 		File file = new File(ZmallConstant.TEMP_FOLDER + imagename);
 		if(command.equals("products")) {
-			file = new File(ZmallConstant.IMAGE_FOLDER + imagename);
+			file = new File(productImageDir, imagename);
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(ZmallUtil.getMediaType(imagename));

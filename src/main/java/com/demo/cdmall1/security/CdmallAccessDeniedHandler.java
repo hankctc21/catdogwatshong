@@ -15,6 +15,16 @@ public class CdmallAccessDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
+		String requestedWith = request.getHeader("X-Requested-With");
+		String uri = request.getRequestURI();
+		boolean isAjax = "XMLHttpRequest".equalsIgnoreCase(requestedWith);
+		boolean isApi = uri != null && uri.startsWith("/products/");
+		if (isAjax || isApi) {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setContentType("application/json;charset=UTF-8");
+			response.getWriter().write("{\"message\":\"권한이 없습니다\"}");
+			return;
+		}
 		HttpSession session = request.getSession();
 		session.setAttribute("msg", "잘못된 접근입니다");
 		response.sendRedirect("/");

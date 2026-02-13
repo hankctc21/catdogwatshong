@@ -60,13 +60,41 @@ $(document).ready(function() {
 	<nav id="nav" th:replace="fragments/navStore">
 	</nav>
 	<div class="slide">
-                    <ul class="slide_a">
-                      <li><a href="/questionBoard/list" style="text-decoration:none">쇼핑몰1</a></li>
-                      <li><a href="/questionBoard/list" style="text-decoration:none">쇼핑몰2</a></li>
-                      <li><a href="/questionBoard/list" style="text-decoration:none">쇼핑몰3</a></li>
-                      <li><a href="/questionBoard/list" style="text-decoration:none">쇼핑몰4</a></li>
-                    </ul>
-    </div>
+		<ul class="slide_a promo-carousel">
+			<li class="promo-item promo-item-1">
+				<div class="promo-content">
+					<span class="promo-badge">PET CARE WEEK</span>
+					<h2>강아지 영양제 특별전</h2>
+					<p>건강관리 인기 브랜드를 최대 40% 할인으로 만나보세요.</p>
+					<a class="promo-cta" href="/product/newList">지금 보기</a>
+				</div>
+			</li>
+			<li class="promo-item promo-item-2">
+				<div class="promo-content">
+					<span class="promo-badge">NEW ARRIVAL</span>
+					<h2>신상 간식 라인업 오픈</h2>
+					<p>알러지 케어 간식부터 기능성 사료까지 새롭게 입고됐습니다.</p>
+					<a class="promo-cta" href="/shop/newList">신상품 보러가기</a>
+				</div>
+			</li>
+			<li class="promo-item promo-item-3">
+				<div class="promo-content">
+					<span class="promo-badge">BEST PICK</span>
+					<h2>요즘 가장 많이 담는 상품</h2>
+					<p>찜과 구매가 빠르게 늘고 있는 인기 상품을 모아봤어요.</p>
+					<a class="promo-cta" href="/shop/bestList">인기상품 보기</a>
+				</div>
+			</li>
+			<li class="promo-item promo-item-4">
+				<div class="promo-content">
+					<span class="promo-badge">MEMBER BENEFIT</span>
+					<h2>회원 전용 쿠폰 혜택</h2>
+					<p>로그인 후 매주 업데이트되는 전용 할인 쿠폰을 확인하세요.</p>
+					<a class="promo-cta" href="/member/login">혜택 확인</a>
+				</div>
+			</li>
+		</ul>
+	</div>
     
 	<div id="main" style="width: 1600px;" >
 	<div  id="floatMenu" sec:authorize="isAuthenticated()">

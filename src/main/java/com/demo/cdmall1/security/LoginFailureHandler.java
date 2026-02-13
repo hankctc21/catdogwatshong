@@ -1,6 +1,7 @@
 package com.demo.cdmall1.security;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -42,8 +43,14 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 				session.setAttribute("msg", "로그인에 " + member.getLoginFailCnt() + "회 실패했습니다");
 			else
 				session.setAttribute("msg", "로그인에 5회이상 실패해 계정이 블록되었습니다");	
-		} else if(exception instanceof DisabledException) 
-			session.setAttribute("msg", "블록된 계정입니다. 관리자에게 연락하세요");
+		} else if(exception instanceof DisabledException) {
+			String username = request.getParameter("username");
+			Optional<Member> result = dao.findById(username);
+			if(result.isPresent() && result.get().getCheckcode()!=null)
+				session.setAttribute("msg", "이메일 인증이 완료되지 않았습니다. 메일의 인증 링크를 먼저 눌러주세요");
+			else
+				session.setAttribute("msg", "블록된 계정입니다. 관리자에게 연락하세요");
+		}
 		new DefaultRedirectStrategy().sendRedirect(request, response, "/member/login?error");
 	}
 }

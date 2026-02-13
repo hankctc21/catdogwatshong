@@ -114,7 +114,7 @@ const join = () =>{
 		data: formData,
 		processData: false,
 		contentType: false
-	}).done(()=>Swal.fire("가입신청 완료","이메일을 확인하세요", "success"))
+	}).done(()=>Swal.fire("가입신청 완료","이메일 인증을 완료해야 로그인할 수 있습니다. 메일의 인증 링크를 눌러주세요.", "success"))
 	.fail((msg)=>Swal.fire('가입신청 실패', msg,'error'));
 }
 
@@ -146,6 +146,11 @@ $(document).ready(()=>{
 	$("#password2").on("blur", password2Check);
 	
 	$("#join").on("click", ()=>{
+		// Ensure keyboard-layout conversion is applied even when user clicks submit without blur.
+		$("#username").val(hangulToQwerty($("#username").val()).toUpperCase());
+		$("#password").val(hangulToQwerty($("#password").val()));
+		$("#password2").val(hangulToQwerty($("#password2").val()));
+
 		console.log("aaa");
 		const r1 = usernameCheck();
 		const r2 = passwordCheck();

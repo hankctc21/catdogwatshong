@@ -21,7 +21,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 } 
 
 .header-main {
-	height: 100px;
+	height: 108px;
 	width: 100%;
 	max-width: 1300px;
 	margin: 0 auto;
@@ -31,10 +31,12 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 /*border : 1px solid #d89a1d;*/
 
 	 display: flex;
-     width: calc(100% - 20px);
+     align-items: center;
+     gap: 10px;
+     width: calc(100% - 24px);
      max-width: 1280px;
      margin: 0 auto;
-     height: 100px;
+     height: 92px;
      margin-top: 0px;
      justify-content: space-between; 
      position: fixed; 
@@ -43,6 +45,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
      left: 50%;
      transform: translateX(-50%);
      box-sizing: border-box;
+     padding: 0 12px;
      
 /*     display: flex;   */
 /*     justify-content: space-between;  양쪽 정렬 */
@@ -56,24 +59,27 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 }
 #menuChange  {
-	flex: 2;
-	width: 426.66px;
+	flex: 1 1 0;
+	min-width: 0;
 	position: static;
-	margin-top: 20px;
+	margin-top: 0;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 } 
 
 
 #menuChange > li {
-	
-	/*background: aqua;*/
-	float: left;
-	margin-right: 30px;
+	float: none;
+	margin-right: 0;
 }
 #menuChange > li > a{
-	font-size: 1.8em;
+	font-size: clamp(1.1rem, 1.9vw, 1.6rem);
     text-align: center;
     border-radius: 50px;
     color: #337AB7;
+    display: inline-block;
+    padding: 8px 12px;
 }
 
 /* 왼쪽 상단  */
@@ -82,11 +88,11 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 
 #mainLogo {
-	flex: 1;
-	width: 426.66px;
+	flex: 0 0 auto;
+	width: auto;
 	position: static;
 	margin-left: 0;
-	
+	text-align: center;
 }
 
 /* 메인로고 */
@@ -94,39 +100,57 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 
 #top_menu_anonymous {
-	margin-top:20px;
-	width: 500px;
+	margin-top: 0;
+	width: auto;
+	flex: 1 1 0;
+	min-width: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 4px;
 }
 #top_menu_anonymous >li{
-	float: right;
+	float: none;
 	font-size: 1.1em;
-	width: 90px;
+	width: auto;
 	text-align: center;
 }
 /* 오른쪽상단, 로그인하기전 */
 
 #top_menu_authenticated {
-	margin-top:20px;
-	width: 500px;
+	margin-top: 0;
+	width: auto;
+	flex: 1 1 0;
+	min-width: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 4px;
 }
 
 #top_menu_authenticated >li{
-	float: right;
+	float: none;
 	font-size: 1.1em;
-	width: 90px;
+	width: auto;
 	text-align: center;
 }
 
 #top_menu_authenticated >li >a{
     color: #337AB7;
 }
+#top_menu_anonymous > li > a,
+#top_menu_authenticated > li > a{
+	display: inline-block;
+	padding: 8px 10px;
+	white-space: nowrap;
+	border-radius: 12px;
+}
 
 /* 오른쪽 상단, 로그인 후 */
 
 
 .main_logo {
-	width:250px;
-	margin-right: 120px;
+	width: clamp(150px, 17vw, 230px);
 	display: block;
 	margin: 0 auto;
 	position: static;
@@ -162,17 +186,19 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 .backgroundChange{
 	background-color:#E8F5FF;
 	border-radius: 15px;
+	box-shadow: 0 8px 24px rgba(30, 70, 120, 0.12);
 }
 
 @media (max-width: 1024px) {
 	.header-main {
-		height: 140px;
+		height: 172px;
 	}
 	.header {
 		height: auto;
 		flex-wrap: wrap;
 		justify-content: center;
-		padding: 8px 6px;
+		padding: 8px 10px 12px;
+		gap: 6px;
 	}
 	#menuChange, #top_menu_anonymous, #top_menu_authenticated {
 		width: 100%;
@@ -180,7 +206,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: 4px;
+		gap: 6px;
 	}
 	#menuChange > li,
 	#top_menu_anonymous > li,
@@ -188,15 +214,37 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 		float: none;
 		margin-right: 0;
 		width: auto;
-		min-width: 80px;
+		min-width: 72px;
 	}
 	#mainLogo {
 		width: 100%;
 		flex: 0 0 100%;
 		text-align: center;
+		order: -1;
 	}
 	.main_logo {
 		width: 180px;
+	}
+	#menuChange > li > a {
+		font-size: 1.05rem;
+		padding: 6px 10px;
+	}
+	#top_menu_anonymous > li > a,
+	#top_menu_authenticated > li > a {
+		padding: 6px 8px;
+		font-size: 0.95rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.header-main {
+		height: 186px;
+	}
+	.main_logo {
+		width: 150px;
+	}
+	#menuChange > li > a {
+		font-size: 0.95rem;
 	}
 }
 	

@@ -55,7 +55,8 @@
 				data: formData,
 				processData: false,	
 				contentType: false								// contentType을 multipart/form-data로 지정하려면 $.ajax는 false로 줘야한다 
-			}).done(location.href = "/product/list");
+			}).done(()=> location.href = "/product/list")
+			  .fail(()=> alert("상품 추가에 실패했습니다. 입력값과 권한을 확인해주세요."));
 			//
 		});
 		//														categoryCode

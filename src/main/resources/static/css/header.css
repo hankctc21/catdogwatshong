@@ -22,21 +22,27 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 .header-main {
 	height: 100px;
+	width: 100%;
+	max-width: 1300px;
+	margin: 0 auto;
 }
 .header  {
 
 /*border : 1px solid #d89a1d;*/
 
 	 display: flex;
-     width: 1280px;
-     margin: auto;
+     width: calc(100% - 20px);
+     max-width: 1280px;
+     margin: 0 auto;
      height: 100px;
      margin-top: 0px;
      justify-content: space-between; 
      position: fixed; 
      background-color: transparent;
      z-index: 5;
-     margin-left: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     box-sizing: border-box;
      
 /*     display: flex;   */
 /*     justify-content: space-between;  양쪽 정렬 */
@@ -79,7 +85,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 	flex: 1;
 	width: 426.66px;
 	position: static;
-	margin-left: 150px;
+	margin-left: 0;
 	
 }
 
@@ -156,5 +162,41 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 .backgroundChange{
 	background-color:#E8F5FF;
 	border-radius: 15px;
+}
+
+@media (max-width: 1024px) {
+	.header-main {
+		height: 140px;
+	}
+	.header {
+		height: auto;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 8px 6px;
+	}
+	#menuChange, #top_menu_anonymous, #top_menu_authenticated {
+		width: 100%;
+		margin-top: 6px;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+	#menuChange > li,
+	#top_menu_anonymous > li,
+	#top_menu_authenticated > li {
+		float: none;
+		margin-right: 0;
+		width: auto;
+		min-width: 80px;
+	}
+	#mainLogo {
+		width: 100%;
+		flex: 0 0 100%;
+		text-align: center;
+	}
+	.main_logo {
+		width: 180px;
+	}
 }
 	

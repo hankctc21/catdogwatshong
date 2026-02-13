@@ -45,7 +45,17 @@ const hangulToQwerty = (text) => {
 };
 
 const bindQwertyConversion = (selector) => {
-	$(selector).on("input", function() {
+	let composing = false;
+	$(selector).on("compositionstart", function() {
+		composing = true;
+	});
+	$(selector).on("compositionend", function() {
+		composing = false;
+	});
+	// Avoid converting while IME composition is active; convert on blur for stability.
+	$(selector).on("blur", function() {
+		if (composing)
+			return;
 		const converted = hangulToQwerty($(this).val());
 		if ($(this).val() !== converted) {
 			$(this).val(converted);

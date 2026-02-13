@@ -28,6 +28,30 @@
 	<script th:inline="javascript">
 		
 		$(document).ready(()=>{
+			const hangulToQwerty = (text)=>{
+				const compatMap = {
+					"ㄱ":"r","ㄲ":"R","ㄴ":"s","ㄷ":"e","ㄸ":"E","ㄹ":"f","ㅁ":"a","ㅂ":"q","ㅃ":"Q","ㅅ":"t","ㅆ":"T","ㅇ":"d","ㅈ":"w","ㅉ":"W","ㅊ":"c","ㅋ":"z","ㅌ":"x","ㅍ":"v","ㅎ":"g",
+					"ㅏ":"k","ㅐ":"o","ㅑ":"i","ㅒ":"O","ㅓ":"j","ㅔ":"p","ㅕ":"u","ㅖ":"P","ㅗ":"h","ㅘ":"hk","ㅙ":"ho","ㅚ":"hl","ㅛ":"y","ㅜ":"n","ㅝ":"nj","ㅞ":"np","ㅟ":"nl","ㅠ":"b","ㅡ":"m","ㅢ":"ml","ㅣ":"l"
+				};
+				const choseong = ["r","R","s","e","E","f","a","q","Q","t","T","d","w","W","c","z","x","v","g"];
+				const jungseong = ["k","o","i","O","j","p","u","P","h","hk","ho","hl","y","n","nj","np","nl","b","m","ml","l"];
+				const jongseong = ["","r","R","rt","s","sw","sg","e","f","fr","fa","fq","ft","fx","fv","fg","a","q","qt","t","T","d","w","c","z","x","v","g"];
+				let converted = "";
+				for (const ch of text) {
+					const code = ch.charCodeAt(0);
+					if (code >= 0xac00 && code <= 0xd7a3) {
+						const sIndex = code - 0xac00;
+						const l = Math.floor(sIndex / 588);
+						const v = Math.floor((sIndex % 588) / 28);
+						const t = sIndex % 28;
+						converted += choseong[l] + jungseong[v] + jongseong[t];
+						continue;
+					}
+					converted += compatMap[ch] || ch;
+				}
+				return converted;
+			};
+
 			let error_msg = [[${msg}]]
 			console.log(error_msg);
 			if(error_msg != null){
@@ -36,10 +60,13 @@
 			
 			$("#login").on("click", ()=>{
 				
-				const $username = $("#userid").val().toUpperCase();
-				const $password = $("#userpwd").val();
+				const $username = hangulToQwerty($("#userid").val()).toUpperCase();
+				const $password = hangulToQwerty($("#userpwd").val());
+				$("#userid").val($username);
+				$("#userpwd").val($password);
 	
 				const $form = $("#login_form").attr("method","post").attr("action","/member/login");
+				$form.find("input[name='username'], input[name='password']").remove();
 				$("<input>").attr("type","hidden").attr("name","username").val($username).appendTo($form);
 				$("<input>").attr("type","hidden").attr("name","password").val($password).appendTo($form);
 				$form.submit();

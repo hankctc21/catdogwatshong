@@ -29,6 +29,22 @@
 .cart_image{
 	width: 60px;
 }
+.cart-summary {
+	margin-top: 12px;
+	font-size: 22px;
+	font-weight: 700;
+	color: #0f172a;
+}
+#total_price {
+	color: #1d4ed8;
+}
+#cart_div button {
+	margin-right: 8px;
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1px solid #cbd5e1;
+	background: #fff;
+}
 
 
 </style>
@@ -54,14 +70,14 @@
 						</tbody>
 					</table>
 					<hr>
-					<div>
+					<div class="cart-summary">
 						총 주문 금액 : <span id="total_price"></span>
 					</div>
 					<div>
 						<input type="checkbox" id="check_all">
-						<button id="delete_product">선택상품 삭제</button>
-						<button id='continueShopping'>쇼핑계속 하기</button>
-						<button id='order'>주문하기</button>
+						<button type="button" id="delete_product">선택상품 삭제</button>
+						<button type="button" id='continueShopping'>쇼핑계속 하기</button>
+						<button type="button" id='order'>주문하기</button>
 						
 					</div>
 				</div>

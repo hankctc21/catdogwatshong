@@ -41,6 +41,7 @@
 		// 주문 정보 출력
 		printOrders: function() {
 			const $list = $("#list");
+			$list.empty();
 			let totalPrice = 0;
 			$.each(orders, function(idx, orderItem) {
 				const $tr = $("<tr>").appendTo($list);
@@ -57,11 +58,11 @@
 				$("<div>").text("상품 주문 수량 : " + orderItem.count + "개").appendTo($td4);
 				
 				const $td5 = $("<td>").appendTo($tr);
-				$("<div>").text(orderItem.orderItemPrice).appendTo($td5);
+				$("<div>").text(Number(orderItem.orderItemPrice || 0).toLocaleString("ko-KR") + "원").appendTo($td5);
 				
 				totalPrice += orderItem.orderItemPrice;		
 			});
-			$("#total_price").text("전체 가격 : " + totalPrice + "원").css("text-align","right");
+			$("#total_price").text("전체 가격 : " + Number(totalPrice).toLocaleString("ko-KR") + "원").css("text-align","right");
 		},
 		
 		// 주소들을 가져와 출력
@@ -125,8 +126,9 @@
 				/* beforeSend: function(xhr) { 
 					xhr.setRequestHeader(header, token) */
 				
-			})
-				//.done(location.href="/order/list");
+			}).done(()=>{
+				location.href="/order/list";
+			});
 		}
 	};
 	

@@ -64,7 +64,7 @@ const main = {
 			$("<input>").attr("type","checkbox").attr("class","check").data("pno", cart.pno).appendTo($td1);
 			
 			const $td2 = $("<td>").appendTo($tr);
-			$("<img>").attr("src", "/upload/productimage/"+cart.image).attr("class","cart_image").appendTo($td2);
+			$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(cart.image)).attr("class","cart_image").appendTo($td2);
 			
 			const $td3 = $("<td>").appendTo($tr);
 			$("<div>").text(cart.manufacturer).appendTo($td3);
@@ -77,11 +77,10 @@ const main = {
 			$("<span>").attr("class","inc").data("pno", cart.pno).text("+").appendTo($td4_div);
 			
 			const $td5 = $("<td>").appendTo($tr);
-			const price = cart.cartPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","); 
-			$("<div>").text(price + "원").appendTo($td5);
+			$("<div>").text(formatWon(cart.cartPrice)).appendTo($td5);
 			$("<div>").append($("<button type='button' class='button order'>주문하기</button>").attr("data-cartNo", idx)).appendTo($td5);
 		});	
-		$("#total_price").text(totalPrice + "원");
+		$("#total_price").text(formatWon(totalPrice));
 	},
 		
 	checkAll : function() {
@@ -131,7 +130,8 @@ const main = {
 		});
 	},
 		
-		deleteProduct:function() {
+	deleteProduct:function(e) {
+		e.preventDefault();
 		// [1,2,3]으로 보내면 서버에서 @RequestBody를 이용해 ArrayList<Integer>로 받는다
 		// 선택한 체크박스의 pno 값들을 읽어와 추가할 비어있는 배열
 		const dto = [];
@@ -141,15 +141,16 @@ const main = {
 			if($(this).is(":checked"))
 				dto.push($(this).data("pno"));
 		});
+		if(dto.length===0) {
+			alert("삭제할 상품을 선택해 주세요.");
+			return;
+		}
 		
 		$.ajax({
 			url:"/carts",
 			method:"delete",
 			data: JSON.stringify(dto),
-			contentType: "application/json",
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader(header, token)
-			}
+			contentType: "application/json"
 		}).done(result=>{
 			carts = result;
 			window._this.printPage();
@@ -157,25 +158,29 @@ const main = {
 	},
 		
 	// 주문버튼을 클릭하면 선택한 체크박스의 pno값들을 배열로 만들어 서버로 보낸다
-	order: function() {
+	order: function(e) {
+		e.preventDefault();
 		const dto = [];
 		$(".check").each(function(idx) {
 			if($(this).is(":checked"))
 				dto.push($(this).data("pno"));
 		});
+		if(dto.length===0) {
+			alert("주문할 상품을 선택해 주세요.");
+			return;
+		}
 		$.ajax({
 			url:"/orders/cart",
 			method:"post",
 			data: JSON.stringify(dto),
-			contentType: "application/json",
-			beforeSend: function(xhr) {
-				xhr.setRequestHeader(header, token)
-			}
+			contentType: "application/json"
 		}).done((result, text, response)=>{
-			location.href = response.getResponseHeader('Location')
+			location.href = response.getResponseHeader('Location');
 		});
 	}
 }
+
+const formatWon = (amount)=> Number(amount || 0).toLocaleString("ko-KR") + "원";
 	
 window.onload = function() {
 	main.init();

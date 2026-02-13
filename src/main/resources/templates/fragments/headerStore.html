@@ -17,7 +17,9 @@
         <li class="menu" ><a href="/boardMain" >COMMUNITY</a></li> 
       </ul>
       	<div id="mainLogo" >
-      			<img  src="/image/mainLogo2.png" class=main_logo >
+      			<a href="/" aria-label="캣독왓숑 홈으로 이동">
+      				<img  src="/image/mainLogo2.png" class=main_logo >
+      			</a>
       	</div>
       	  <ul sec:authorize="isAnonymous()" class="nav navbar-nav" id="top_menu_anonymous" style="font-size: 1.1em;">
                 <li><a class="" href="/">HOME</a> </li>
@@ -35,6 +37,7 @@
 
 
          <ul sec:authorize="isAuthenticated()" class="nav navbar-nav" id="top_menu_authenticated" style="font-size: 1.1em;">
+         		<li><a href="/">HOME</a></li>
 				<li><a href="#" id="logout">LOGOUT</a></li>
                 <li><a href="/product/list">ORDER</a></li>
 				<li id="nav-sub-button2" style="width:100px"><a>CART</a>

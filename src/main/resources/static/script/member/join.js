@@ -11,6 +11,48 @@ const check = (value, pattern, message, element)=>{
 	return true;
 }
 
+// Convert Korean keyboard input (2-beolsik) into QWERTY letters.
+const hangulToQwerty = (text) => {
+	const compatMap = {
+		"ㄱ":"r","ㄲ":"R","ㄴ":"s","ㄷ":"e","ㄸ":"E","ㄹ":"f","ㅁ":"a","ㅂ":"q","ㅃ":"Q","ㅅ":"t","ㅆ":"T","ㅇ":"d","ㅈ":"w","ㅉ":"W","ㅊ":"c","ㅋ":"z","ㅌ":"x","ㅍ":"v","ㅎ":"g",
+		"ㅏ":"k","ㅐ":"o","ㅑ":"i","ㅒ":"O","ㅓ":"j","ㅔ":"p","ㅕ":"u","ㅖ":"P","ㅗ":"h","ㅘ":"hk","ㅙ":"ho","ㅚ":"hl","ㅛ":"y","ㅜ":"n","ㅝ":"nj","ㅞ":"np","ㅟ":"nl","ㅠ":"b","ㅡ":"m","ㅢ":"ml","ㅣ":"l"
+	};
+
+	const choseong = ["r","R","s","e","E","f","a","q","Q","t","T","d","w","W","c","z","x","v","g"];
+	const jungseong = ["k","o","i","O","j","p","u","P","h","hk","ho","hl","y","n","nj","np","nl","b","m","ml","l"];
+	const jongseong = ["","r","R","rt","s","sw","sg","e","f","fr","fa","fq","ft","fx","fv","fg","a","q","qt","t","T","d","w","c","z","x","v","g"];
+
+	let converted = "";
+	for (const ch of text) {
+		const code = ch.charCodeAt(0);
+		// Hangul syllables
+		if (code >= 0xac00 && code <= 0xd7a3) {
+			const sIndex = code - 0xac00;
+			const l = Math.floor(sIndex / 588);
+			const v = Math.floor((sIndex % 588) / 28);
+			const t = sIndex % 28;
+			converted += choseong[l] + jungseong[v] + jongseong[t];
+			continue;
+		}
+		// Compatibility jamo
+		if (compatMap[ch]) {
+			converted += compatMap[ch];
+			continue;
+		}
+		converted += ch;
+	}
+	return converted;
+};
+
+const bindQwertyConversion = (selector) => {
+	$(selector).on("input", function() {
+		const converted = hangulToQwerty($(this).val());
+		if ($(this).val() !== converted) {
+			$(this).val(converted);
+		}
+	});
+};
+
 
 const usernameCheck = ()=>{
 	const $username = $("#username").val().toUpperCase();
@@ -30,8 +72,8 @@ const passwordCheck = () => {
 	$("#password_msg").text("");
 	const $password = $("#password").val();
 
-	const pattern = /^(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$/;
-	return check($password, pattern, "비밀번호는 영숫자와 특수문자 8~10자입니다", $("#password_msg"));	
+	const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,10}$/;
+	return check($password, pattern, "비밀번호는 영문/숫자/특수문자(!@#$%^&*)를 포함한 8~10자입니다", $("#password_msg"));	
 }
 const password2Check = () => {
 	$("#password2_msg").text("");
@@ -67,6 +109,11 @@ const join = () =>{
 }
 
 $(document).ready(()=>{
+	// Keep Korean allowed only in name; force QWERTY-compatible chars for id/password fields.
+	bindQwertyConversion("#username");
+	bindQwertyConversion("#password");
+	bindQwertyConversion("#password2");
+
 	$("#username").on("blur", ()=>{
 		if(usernameCheck()==false)
 			return false;

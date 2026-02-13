@@ -13,7 +13,7 @@ import com.demo.cdmall1.util.validation.validator.*;
 @Constraint(validatedBy = PasswordValidator.class)
 public @interface Password {
 	// 검증 실패시 출력할 기본 메시지
-	String message() default "비밀번호는 특수문자를 포함하는 영숫자와 특수문자 8~10자입니다";
+	String message() default "비밀번호는 영문/숫자/특수문자(!@#$%^&*)를 포함한 8~10자입니다";
 	
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {}; 

@@ -50,6 +50,7 @@ public class ProductController {
 	
 	
 	
+	@PreAuthorize("hasAnyRole('SELLER','ADMIN')")
 	@PostMapping(path="/products/new", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insert(@Valid ProductDto.Write dto, BindingResult bindingResult, Principal principal) throws BindException {
 		

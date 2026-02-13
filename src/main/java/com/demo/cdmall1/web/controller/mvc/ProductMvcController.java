@@ -2,11 +2,13 @@ package com.demo.cdmall1.web.controller.mvc;
 
 import javax.servlet.http.*;
 
+import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProductMvcController {
+	@PreAuthorize("hasAnyRole('SELLER','ADMIN')")
 	@GetMapping("/product/insert")
 	public void insert() {
 	}

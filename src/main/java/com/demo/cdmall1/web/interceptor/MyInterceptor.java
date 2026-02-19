@@ -5,11 +5,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 @Component
-public class MyInterceptor extends HandlerInterceptorAdapter{
+public class MyInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -17,7 +17,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 		String msg = (String) session.getAttribute("msg");
 		if(msg !=null) {
 			request.setAttribute("msg", msg);
-			session.removeAttribute(msg);
+			session.removeAttribute("msg");
 		}	
 		return true;
 	}
@@ -25,6 +25,6 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		super.postHandle(request, response, handler, modelAndView);
+		// no-op
 	}
 }

@@ -12,6 +12,7 @@ import com.demo.cdmall1.domain.jpa.*;
 import lombok.*;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -155,18 +155,37 @@
                             <classifier>jakarta</classifier>
                         </path>
                         <path>
-                            <groupId>jakarta.persistence</groupId>
-                            <artifactId>jakarta.persistence-api</artifactId>
-                        </path>
-                        <path>
-                            <groupId>jakarta.annotation</groupId>
-                            <artifactId>jakarta.annotation-api</artifactId>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.34</version>
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Aquerydsl.entityAccessors=true</arg>
+                        <arg>-processor</arg>
+                        <arg>com.querydsl.apt.jpa.JPAAnnotationProcessor</arg>
                     </compilerArgs>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>add-querydsl-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/annotations</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

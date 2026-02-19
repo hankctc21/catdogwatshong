@@ -37,7 +37,7 @@
 - 사용자 참여형 콘텐츠 탐색(목록/읽기/검색)
 
 ## Tech Stack
-- Backend: Java 11, Spring Boot 2.5.4, Spring Security, Spring Data JPA, QueryDSL
+- Backend: Java 21, Spring Boot 3.3.x, Spring Security 6, Spring Data JPA, QueryDSL (Jakarta)
 - Frontend: Thymeleaf, jQuery, Bootstrap, HTML/CSS
 - DB: Oracle XE (Docker)
 - Infra/DevOps: Docker, Docker Compose, Oracle Cloud VM(배포)
@@ -54,6 +54,14 @@ docker compose up -d --build
 
 접속:
 - `http://158.180.70.210:8080` (위 Live URL 참고)
+
+## Local Build (IntelliJ)
+- Project SDK / Maven JDK를 `Java 21`로 맞춘 뒤 빌드하세요.
+- Annotation Processing을 활성화해야 QueryDSL Q-class가 생성됩니다.
+
+```bash
+./mvnw -DskipTests clean compile
+```
 
 ## Environment Variables
 - `SPRING_DATASOURCE_URL`

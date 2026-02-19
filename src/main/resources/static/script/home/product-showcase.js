@@ -38,6 +38,12 @@ function renderShowcase(url, targetSelector, options) {
 					$("<img>")
 						.attr("src", imageSrc)
 						.attr("alt", product.name || "상품 이미지")
+						.attr("loading", "lazy")
+						.on("error", function() {
+							$(this)
+								.attr("src", "/image/product_image.jpg")
+								.attr("alt", "이미지 없음");
+						})
 						.css({width: "150px", height: "150px", objectFit: "cover", cursor: "pointer"})
 						.on("click", function() {
 							location.href = "/product/read?pno=" + product.pno;

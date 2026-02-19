@@ -112,50 +112,37 @@ $(document).ready(function() {
   				<strong>작업 실패 </strong> <span id="msg_span"></span>
 			</div>
 			<div class="main_text0">
-            	<h1>오늘의 발견 | <span class="newArrival" >댕댕의 정석에 새롭게 들어온 상품!</span> </h1>
+           	<h1>오늘의 발견 | <span class="newArrival">댕댕의 정석에 새롭게 들어온 상품</span></h1>
             	<div class="contents1">
 
                		<ul class="icons" id="today-discovery"></ul>
                 </div>
 
-                <h1 style="margin-top: 100px;">요즘 뜨는 상품 | <span class="newArrival" >댕댕의 정석이 엄선한 가장 HOT한 상품!</span> </h1>
+                <h1 class="section-title-gap">요즘 뜨는 상품 | <span class="newArrival">댕댕의 정석이 엄선한 HOT 아이템</span></h1>
           
                 <div class="contents2">
 
                   <ul class="icons2" id="hot-products"></ul>
                   </div>
                   <div class="bottomad">
-                  아랫광고
+                    <div class="bottomad-copy">
+                      <strong>광고 제휴 배너 영역</strong>
+                      <span>브랜드 캠페인/시즌 프로모션을 노출하는 운영 영역입니다.</span>
+                    </div>
                   </div>
         </div>
 		</section>
 	</div>
 	<footer id="footer" th:replace="fragments/footer">
 	</footer>
-					<script sec:authorize="hasRole('ADMIN')" th:inline="javascript">
+	<script sec:authorize="hasAnyRole('ADMIN','USER','SELLER')" th:inline="javascript">
 		$("#chat1").on("click", (e)=>{
-			
-			
-			console.log("in chatting click");
-			// 새창 띄우기 코드
-			var w = 750; //팝업창의 가로크기(임의)
-			var h = 750; //팝업창의 세로크기(임의)
-			var xPos = (document.body.offsetWidth/2) - (w/2);
-			var yPos = (document.body.offsetHeight/2) - (h/2);
+			const w = 680;
+			const h = 740;
+			const xPos = (window.outerWidth/2) - (w/2);
+			const yPos = (window.outerHeight/2) - (h/2);
 			e.preventDefault();
-			window.open("http://localhost:8081/chatting/chatmain", "pop_name", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
-		});		
-	</script>
-	<script sec:authorize="hasRole('USER')" th:inline="javascript">
-		$("#chat1").on("click", (e)=>{
-			console.log("in chatting click");
-			
-			var w = 610; //팝업창의 가로크기(임의)
-			var h = 730; //팝업창의 세로크기(임의)
-			var xPos = (document.body.offsetWidth/2) - (w/2);
-			var yPos = (document.body.offsetHeight/2) - (h/2);
-			e.preventDefault();
-			window.open("http://localhost:8081/chatting/chatmain", "pop_name", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
+			window.open("/chatting/chatmain", "pop_name", "width="+w+", height="+h+", left="+xPos+", top="+yPos+", menubar=yes, status=yes, titlebar=yes, resizable=yes");
 		});
 	</script>
 		<script type="text/javascript">

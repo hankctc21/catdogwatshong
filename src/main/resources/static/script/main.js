@@ -1,10 +1,18 @@
 $(function() {
-	$("#page").append('<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>');
 	const $head = $("head")[0];
-	$('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>').appendTo($head)
-	$('<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>').appendTo($head);
-	$('<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>').appendTo($head);
-	$('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">').appendTo($head);
-	$('<link rel="stylesheet" href="/css/main.css">').appendTo($head);
-	$('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">').appendTo($head);
-});
+	const ensureScript = (src) => {
+		if ($('script[src="' + src + '"]').length === 0)
+			$('<script>').attr("src", src).appendTo($head);
+	};
+	const ensureCss = (href) => {
+		if ($('link[href="' + href + '"]').length === 0)
+			$('<link rel="stylesheet">').attr("href", href).appendTo($head);
+	};
+
+	ensureScript("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js");
+	ensureScript("https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js");
+	ensureScript("//cdn.jsdelivr.net/npm/sweetalert2@11");
+	ensureCss("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css");
+	ensureCss("/css/main.css");
+	ensureCss("https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css");
+}); 

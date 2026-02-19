@@ -1,5 +1,5 @@
 // 전역 변수
-const url = 'http://localhost:8081';
+const url = '';
 let stompClient;
 let newMessages = new Object();
 // let messageArray = new Array();

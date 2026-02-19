@@ -198,7 +198,7 @@ margin-top: 50px;
 			if(choice==false)
 				return;
 			$.ajax({
-				url:"http://localhost:8081/member/logout",
+				url:"/member/logout",
 				method: "post",
 			}).done(()=>location.href="/");
 			

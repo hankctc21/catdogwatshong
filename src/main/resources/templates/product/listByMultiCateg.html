@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/nav.css">
-<script src="/script/main.js"></script>
 <script src="/script/product/listByMultiCateg.js"></script>
 <script sec:authorize="isAuthenticated()">
 	const isLogin = true
@@ -177,7 +176,7 @@
 			</div>
 			
 			<div>
-				<a sec:authorize="isAuthenticated()" href="/product/insert" class="btn btn-info">제품 추가</a>
+				<a sec:authorize="hasAnyRole('SELLER','ADMIN')" href="/product/insert" class="btn btn-info">제품 추가</a>
 			</div>
 		</section>
 	</div>

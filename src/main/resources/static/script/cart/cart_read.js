@@ -15,6 +15,7 @@ const main = {
 		});
 		
 		$("#check_all").on("change", this.checkAll);
+		$("#cart_div").on("change", ".check", this.syncCheckAll);
 		$("#cart_div").on("click", ".inc", this.incProduct);
 		$("#cart_div").on("click", ".dec", this.decProduct);
 		$("#delete_product").on("click", this.deleteProduct);
@@ -64,7 +65,13 @@ const main = {
 			$("<input>").attr("type","checkbox").attr("class","check").data("pno", cart.pno).appendTo($td1);
 			
 			const $td2 = $("<td>").appendTo($tr);
-			$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(cart.image)).attr("class","cart_image").appendTo($td2);
+			$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(cart.image)).attr("class","cart_image")
+				.attr("alt", cart.name || "상품 이미지")
+				.attr("loading", "lazy")
+				.on("error", function() {
+					$(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음");
+				})
+				.appendTo($td2);
 			
 			const $td3 = $("<td>").appendTo($tr);
 			$("<div>").text(cart.manufacturer).appendTo($td3);
@@ -81,6 +88,7 @@ const main = {
 			$("<div>").append($("<button type='button' class='button order'>주문하기</button>").attr("data-cartNo", idx)).appendTo($td5);
 		});	
 		$("#total_price").text(formatWon(totalPrice));
+		window._this.syncCheckAll();
 	},
 		
 	checkAll : function() {
@@ -93,6 +101,12 @@ const main = {
 				$(element).prop("checked", false);
 			}) 
 		}
+	},
+	
+	syncCheckAll : function() {
+		const total = $(".check").length;
+		const selected = $(".check:checked").length;
+		$("#check_all").prop("checked", total > 0 && total === selected);
 	},
  
 	incProduct: function() {

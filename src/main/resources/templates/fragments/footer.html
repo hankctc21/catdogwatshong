@@ -2,11 +2,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Footer</title>
+<style>
+	.site-footer {
+		max-width: 1280px;
+		margin: 18px auto 24px;
+		padding: 16px 18px;
+		border: 1px solid #dbe4f0;
+		border-radius: 12px;
+		background: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+	.site-footer h5 {
+		margin: 0;
+		color: #334155;
+		font-size: 14px;
+	}
+	.site-footer a {
+		color: #2563eb;
+		font-size: 13px;
+		text-decoration: none;
+		margin-left: 12px;
+	}
+	@media (max-width: 768px) {
+		.site-footer {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>
 </head>
 <body>
-	<div style=" text-align: center;">
-		<h5 class="white-text">copyright &copy; 2021 ICIA Web</h5>
+	<div class="site-footer">
+		<h5>copyright &copy; <span th:text="${#dates.year(#dates.createNow())}">2026</span> CatDogWatShong</h5>
+		<div>
+			<a href="/">HOME</a>
+			<a href="/api/health" target="_blank" rel="noopener noreferrer">API HEALTH</a>
+		</div>
 	</div>
 </body>
 </html>

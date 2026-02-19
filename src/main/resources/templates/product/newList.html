@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/nav.css">
-<script src="/script/main.js"></script>
 <script sec:authorize="isAuthenticated()">
 	const isLogin = true
 </script>
@@ -110,10 +109,9 @@ const categoryRootClicked=(categoryCode)=>{
 			const $li = $("<li>").appendTo($list);
 			const $figure = $("<figure>").appendTo($li);
 			// 
-			$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(c.imageFileName)).attr("onclick","productClicked("+ c.pno +")").attr("class","prodImg")
+			$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(c.imageFileName)).attr("onclick","productClicked("+ c.pno +")").on("error", function() { $(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음"); }).attr("class","prodImg")
 					.css({"cursor":"pointer"}).attr("id", c.pno+"_"+c.imageFileName).appendTo($figure);
 // 			console.log(c.imageFileName)
-			$('img').attr('id', c.pno+"_"+c.imageFileName);
 			const $figcaption = $("<figcaption>").attr("class","content_css").appendTo($li);
 			const $div = $("<div>").appendTo($figcaption);
 			/* $("<a>").attr("href", "/product/read?pno=" + c.pno).css({"color":"red" ,"text-decoration-line": "none","cursor":"pointer"}).text(c.name).appendTo($div); */		
@@ -300,7 +298,7 @@ const categoryRootClicked=(categoryCode)=>{
 			if(choice==false)
 				return;
 			$.ajax({
-				url:"http://localhost:8081/member/logout",
+				url:"/member/logout",
 				method: "post",
 			}).done(()=> location.href = '/');
 			
@@ -451,7 +449,7 @@ const categoryRootClicked=(categoryCode)=>{
 			</div>
 			
 			<div>
-				<a sec:authorize="isAuthenticated()" href="/product/insert" class="btn btn-info">제품 추가</a>
+				<a sec:authorize="hasAnyRole('SELLER','ADMIN')" href="/product/insert" class="btn btn-info">제품 추가</a>
 				<button style="float: right; margin-right: 50px;" class="btn btn-info top">위로 이동</button>
 			</div>
 		</section>

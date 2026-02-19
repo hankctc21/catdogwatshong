@@ -81,6 +81,18 @@
 		border-radius: 8px;
 		border: 1px solid #e2e8f0;
 	}
+	.order-product-fallback {
+		width: 52px;
+		height: 52px;
+		border-radius: 8px;
+		border: 1px dashed #cbd5e1;
+		background: #f8fafc;
+		color: #64748b;
+		font-size: 11px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	.order-product-name {
 		font-weight: 700;
 	}
@@ -101,11 +113,11 @@
 	const formatWon = (value)=> Number(value || 0).toLocaleString("ko-KR") + "원";
 	const resolveImageSrc = (image)=>{
 		if(!image) return "/products/image?imagename=__missing__";
-		if(image.startsWith("http://localhost:8081/product/image?imagename=")) {
+		if(image.startsWith("/product/image?imagename=")) {
 			const imageName = image.split("imagename=")[1] || "";
 			return "/products/image?imagename=" + encodeURIComponent(decodeURIComponent(imageName));
 		}
-		if(image.startsWith("http://localhost:8081/products/image?imagename=")) {
+		if(image.startsWith("/products/image?imagename=")) {
 			const imageName = image.split("imagename=")[1] || "";
 			return "/products/image?imagename=" + encodeURIComponent(decodeURIComponent(imageName));
 		}
@@ -150,7 +162,14 @@
 					$("<td>").text(orderItem.manufacturer).appendTo($tr);
 					const $td = $("<td>").appendTo($tr);
 					const $productCell = $("<div>").addClass("order-product-cell").appendTo($td);
-					$("<img>").addClass("order-product-img").attr("src", resolveImageSrc(orderItem.image)).appendTo($productCell);
+					$("<img>")
+						.addClass("order-product-img")
+						.attr("src", resolveImageSrc(orderItem.image))
+						.attr("loading", "lazy")
+						.on("error", function() {
+							$(this).replaceWith($("<div>").addClass("order-product-fallback").text("이미지 없음"));
+						})
+						.appendTo($productCell);
 					$("<a>").addClass("order-product-name").attr("href", "/product/read?pno=" + orderItem.pno).text(orderItem.name).appendTo($productCell);
 					$("<td>").text(formatWon(orderItem.price)).appendTo($tr);
 					$("<td>").text((orderItem.count || 0) + "개").appendTo($tr);

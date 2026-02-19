@@ -52,10 +52,10 @@ const printProduct = ()=>{
 		const $li = $("<li>").appendTo($list);
 		const $figure = $("<figure>").appendTo($li);
 			// 
-		$("<img>").attr("src", "/upload/productimage/" + c.imageFileName).attr("onclick","productClicked("+ c.pno +")").attr("class","prodImg")
+		$("<img>").attr("src", "/products/image?imagename=" + encodeURIComponent(c.imageFileName)).attr("onclick","productClicked("+ c.pno +")")
+				.on("error", function() { $(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음"); }).attr("class","prodImg")
 				.css({"cursor":"pointer"}).attr("id", c.pno+"_"+c.imageFileName).appendTo($figure);
 // 			console.log(c.imageFileName)
-		$('img').attr('id', c.pno+"_"+c.imageFileName);
 		const $figcaption = $("<figcaption>").attr("class","content_css").appendTo($li);
 		const $div = $("<div>").appendTo($figcaption);
 			/* $("<a>").attr("href", "/product/read?pno=" + c.pno).css({"color":"red" ,"text-decoration-line": "none","cursor":"pointer"}).text(c.name).appendTo($div); */		
@@ -235,27 +235,6 @@ const goodClicked=(goodCnt, pno)=>{
 	}).done(location.href = "/product/read?pno="+pno);
  }
 	 
- $("#top_menu_authenticated").on("click", "#logout", (e)=> {
-	// a태그는 클릭하면 이동(동작이 2개, 그때 두번째 동작을 막아버린다)
-	e.preventDefault();
-	
-	// 이벤트가 발생한 곳을 넓은 곳에서 좁은 곳으로 찾는다
-	// <div id="parent"><div id="child"><button>클릭</button></div></div>
-	// e.stopPropagation();
-	
-	var choice = confirm('로그아웃하시겠습니까?');
-	if(choice==false)
-		return;
-	$.ajax({
-		url:"http://localhost:8081/member/logout",
-		method: "post",
-	}).done(()=> location.href = '/');
-		
-});	
-
-
-
-
 $(document).ready(()=>{
 	// 주소창에서 페이지 번호를 잘라낸다. 페이지 번호가 없으면 1로
 			//const $username = $("#username").text();

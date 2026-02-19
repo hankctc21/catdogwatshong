@@ -2,7 +2,8 @@ $(function() {
 	let websocket;
 	function connect() {
 		if(websocket==undefined) {
-			websocket = new WebSocket("ws://localhost:8081/web/socket");
+			const wsProtocol = location.protocol === "https:" ? "wss://" : "ws://";
+			websocket = new WebSocket(wsProtocol + location.host + "/web/socket");
 			console.log(websocket);
 		}
 		$.ajax("/memos/unread").done((result)=> $("#msg").text("읽지 않은 메모 : " + result));

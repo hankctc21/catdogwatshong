@@ -17,11 +17,16 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 } 
 
 .container-fluid {
-     width: 1280px;
+     width: 100%;
+     max-width: 1280px;
      display: flex;
      margin:  auto;
-     height: 65px;
-     font-size: 30px;
+     height: auto;
+     font-size: 20px;
+     align-items: center;
+     justify-content: center;
+     gap: 12px;
+     padding: 8px 12px;
 	
 }
 
@@ -60,24 +65,34 @@ border-radius: 50px;
 
 #menu_anonymous {
 	display: flex;
-	width: 1280px;
-	margin-top : 30px;
-	margin-left: 70px;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top : 8px;
+	margin-left: 0;
+	gap: 8px;
+	justify-content: center;
 	
 }
 #menu_authenticated {
 	display: flex;
-	width: 1280px;
-	margin-top : 30px;
-	margin-left: 70px;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top : 8px;
+	margin-left: 0;
+	gap: 8px;
+	justify-content: center;
 	
 }
 
 #menu_anonymous >li {
-	margin-left: 40px;
+	margin-left: 0;
+	position: relative;
 }
 #menu_anonymous >li >a{
 	color: rgb(7, 7, 7);
+	padding: 8px 10px;
+	border-radius: 10px;
+	font-size: 18px;
 }
 
 #menu_anonymous li::after {position: absolute; content:""; display: block; 
@@ -94,9 +109,29 @@ border-radius: 50px;
 
 
 #menu_authenticated >li {
-	margin-left: 40px;	
+	margin-left: 0;
+	position: relative;
 }
 
 #menu_authenticated >li >a {
 	color: rgb(7, 7, 7);
+	padding: 8px 10px;
+	border-radius: 10px;
+	font-size: 18px;
+}
+
+#menu_authenticated > li > a:hover,
+#menu_anonymous > li > a:hover {
+	background: #edf4ff;
+}
+
+@media (max-width: 1024px) {
+	.container-fluid {
+		font-size: 16px;
+	}
+	#menu_authenticated > li > a,
+	#menu_anonymous > li > a {
+		font-size: 15px;
+		padding: 6px 8px;
+	}
 }

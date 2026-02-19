@@ -5,6 +5,7 @@
 
 ## Live URL
 - **서비스 주소: `http://158.180.70.210:8080`**
+- **헬스체크: `http://158.180.70.210:8080/api/health`**
 
 ## Why This Project
 - 서버 사이드 렌더링(SSR) 구조에서 `스토어 도메인`과 `커뮤니티 도메인`을 한 서비스 안에서 함께 운영하는 경험을 보여주기 위해 만들었습니다.
@@ -35,6 +36,9 @@
 - 자유/공지/Q&A/이미지 게시판 운영
 - 댓글/추천/신고 흐름
 - 사용자 참여형 콘텐츠 탐색(목록/읽기/검색)
+
+- 운영 API
+- 서버 상태 확인용 `/api/health` 제공
 
 ## Tech Stack
 - Backend: Java 21, Spring Boot 3.3.x, Spring Security 6, Spring Data JPA, QueryDSL (Jakarta)

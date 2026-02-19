@@ -28,16 +28,9 @@ header, nav, aside, footer, section ,li, a{
 	$(document).ready(()=>{
 		
 		$("#searshButton").on("click", ()=>{
-			const words=$("#word").val();
-			const pageno=1;
-			
-			$.ajax({
-				url: "/shop/search",
-				data: {word:words},
-				method:"post",
-			})
-			.done((result, text, response)=>{ location.href = "/shop/search?pageno="+pageno})
-			//.fail((response, text, message)=>{})
+			const words = ($("#word").val() || "").trim();
+			const pageno = 1;
+			location.href = "/shop/search?pageno=" + pageno + "&word=" + encodeURIComponent(words);
 		});	
 	});
 </script>
@@ -76,7 +69,7 @@ header, nav, aside, footer, section ,li, a{
 			<nav class="navbar navbar-light bg-light">
 			  <a class="navbar-brand"></a>
 			  <form class="form-inline">
-			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="찾고싶은 상품을 검색해 보세요!" aria-label="Search" id="word">
+			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="상품명 검색" aria-label="Search" id="word">
 			    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searshButton"> <span class="fas fa-search"></span> </button>
 			  </form>
 			</nav>
@@ -92,14 +85,14 @@ header, nav, aside, footer, section ,li, a{
 			<nav class="navbar navbar-light bg-light">
 			  <a class="navbar-brand"></a>
 			  <form class="form-inline">
-			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="찾고싶은 상품을 검색해 보세요!" aria-label="Search" id="word">
+			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="상품명 검색" aria-label="Search" id="word">
 			    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searshButton"><span class="fas fa-search"></span></button>
 			  </form>
 			</nav>
     	</ul>
 	</div>
 	<script th:inline="javascript">
-		$("#menu_authenticated").on("click", "#food", (e)=> {
+		$(document).on("click", "#food", (e)=> {
 			// a태그는 클릭하면 이동(동작이 2개, 그때 두번째 동작을 막아버린다)
 			e.preventDefault();
 			
@@ -116,7 +109,7 @@ header, nav, aside, footer, section ,li, a{
 			location.href = "/product/listByMultiCateg?"+$.param(categList);			
 		});
 		
-		$("#menu_authenticated").on("click", "#living", (e)=> {
+		$(document).on("click", "#living", (e)=> {
 			// a태그는 클릭하면 이동(동작이 2개, 그때 두번째 동작을 막아버린다)
 			e.preventDefault();
 			

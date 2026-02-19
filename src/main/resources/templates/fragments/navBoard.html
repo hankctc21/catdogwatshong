@@ -32,8 +32,8 @@ float: right;
 	<div class="container-fluid">
 		
 		<ul sec:authorize="isAnonymous()" class="nav navbar-nav" id="menu_anonymous">
-        	<!-- <li><a href="/boardMain" style="font-size: 30px;">HOME</a></li> -->
-			<li><a href="/noticeBoard/list" style="font-size: 30px;">공지사항</a></li>
+        	<!-- <li><a href="/boardMain">HOME</a></li> -->
+			<li><a href="/noticeBoard/list">공지사항</a></li>
 			<li><a onclick="loginAccess()">사진게시판</a></li>
 			<li><a onclick="loginAccess()">질문게시판</a></li>
 			<li><a onclick="loginAccess()">자유게시판</a></li>
@@ -61,7 +61,7 @@ float: right;
 			if(choice==false)
 				return;
 			$.ajax({
-				url:"http://localhost:8081/member/logout",
+				url:"/member/logout",
 				method: "post",
 			}).done(()=> location.href = '/boardMain');
 			

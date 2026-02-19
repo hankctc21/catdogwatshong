@@ -2,8 +2,8 @@ package com.demo.cdmall1.security;
 
 import java.io.*;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 import org.springframework.security.access.*;
 import org.springframework.security.web.access.*;

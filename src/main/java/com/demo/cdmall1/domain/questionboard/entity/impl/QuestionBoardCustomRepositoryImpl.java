@@ -2,8 +2,8 @@ package com.demo.cdmall1.domain.questionboard.entity.impl;
 
 import java.util.*;
 
-import javax.annotation.*;
-import javax.persistence.*;
+import jakarta.annotation.*;
+import jakarta.persistence.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.domain.*;

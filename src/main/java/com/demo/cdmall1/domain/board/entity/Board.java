@@ -2,10 +2,10 @@ package com.demo.cdmall1.domain.board.entity;
 
 import java.util.*;
 
-import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OrderBy;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OrderBy;
 
 import org.hibernate.annotations.*;
 

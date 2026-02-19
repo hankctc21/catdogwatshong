@@ -1,9 +1,9 @@
 package com.demo.cdmall1.domain.memo.entity;
 
-import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 
 import org.hibernate.annotations.*;
 

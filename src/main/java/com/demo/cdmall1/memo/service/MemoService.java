@@ -2,8 +2,8 @@ package com.demo.cdmall1.memo.service;
 
 import java.util.*;
 
-import javax.annotation.*;
-import javax.persistence.*;
+import jakarta.annotation.*;
+import jakarta.persistence.*;
 
 import org.springframework.scheduling.annotation.*;
 import org.springframework.stereotype.*;

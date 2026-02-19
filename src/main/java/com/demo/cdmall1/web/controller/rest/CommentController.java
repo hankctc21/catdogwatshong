@@ -4,7 +4,7 @@ import java.net.*;
 import java.security.*;
 import java.util.*;
 
-import javax.validation.*;
+import jakarta.validation.*;
 
 import org.springframework.http.*;
 import org.springframework.util.*;

@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.product.service;
 
 import java.io.*;
 import java.util.*;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.data.domain.*;
 import org.springframework.beans.factory.annotation.Value;

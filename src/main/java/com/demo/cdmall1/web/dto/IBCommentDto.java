@@ -4,7 +4,7 @@ import java.time.*;
 
 
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 import com.demo.cdmall1.domain.imageboard.entity.IBComment;
 import com.demo.cdmall1.domain.imageboard.entity.ImageBoard;

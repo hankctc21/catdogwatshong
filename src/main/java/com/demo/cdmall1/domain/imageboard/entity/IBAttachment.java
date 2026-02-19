@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.imageboard.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 import com.fasterxml.jackson.annotation.*;

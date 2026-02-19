@@ -2,7 +2,7 @@ package com.demo.cdmall1.util.validation.annotation;
 
 import java.lang.annotation.*;
 
-import javax.validation.*;
+import jakarta.validation.*;
 
 import com.demo.cdmall1.util.validation.validator.*;
 

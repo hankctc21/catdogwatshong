@@ -2,7 +2,7 @@ package com.demo.cdmall1.web.controller.rest;
 
 import java.util.List;
 
-import javax.servlet.http.*;
+import jakarta.servlet.http.*;
 
 import org.springframework.http.*;
 import org.springframework.security.access.annotation.Secured;

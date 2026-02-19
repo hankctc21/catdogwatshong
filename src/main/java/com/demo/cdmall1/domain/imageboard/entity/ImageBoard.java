@@ -2,9 +2,9 @@ package com.demo.cdmall1.domain.imageboard.entity;
 
 import java.util.*;
 
-import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 
 import org.hibernate.annotations.*;
 

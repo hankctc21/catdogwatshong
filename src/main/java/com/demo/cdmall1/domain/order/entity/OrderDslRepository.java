@@ -2,8 +2,8 @@ package com.demo.cdmall1.domain.order.entity;
 
 import java.util.List;
 
-import javax.annotation.*;
-import javax.persistence.*;
+import jakarta.annotation.*;
+import jakarta.persistence.*;
 
 import org.springframework.stereotype.*;
 

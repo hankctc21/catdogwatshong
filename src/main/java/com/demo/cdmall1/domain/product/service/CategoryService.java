@@ -2,8 +2,8 @@ package com.demo.cdmall1.domain.product.service;
 
 import java.util.*;
 
-import javax.annotation.*;
-import javax.transaction.*;
+import jakarta.annotation.*;
+import jakarta.transaction.*;
 
 import org.hibernate.internal.build.*;
 import org.springframework.beans.factory.annotation.*;

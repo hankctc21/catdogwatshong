@@ -3,7 +3,7 @@ package com.demo.cdmall1.domain.order.entity;
 
 import java.util.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.demo.cdmall1.domain.jpa.BaseCreateTimeEntity;
 

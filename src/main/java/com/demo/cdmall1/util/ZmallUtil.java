@@ -2,7 +2,7 @@ package com.demo.cdmall1.util;
 
 import java.io.*;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.http.*;
 import org.springframework.validation.BindException;

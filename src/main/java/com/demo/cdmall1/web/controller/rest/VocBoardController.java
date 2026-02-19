@@ -7,8 +7,8 @@ import java.net.*;
 import java.nio.file.*;
 import java.security.*;
 
-import javax.servlet.http.*;
-import javax.validation.*;
+import jakarta.servlet.http.*;
+import jakarta.validation.*;
 
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;

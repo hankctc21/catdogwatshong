@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.member.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 

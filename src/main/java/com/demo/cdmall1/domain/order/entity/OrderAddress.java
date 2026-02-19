@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.order.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import lombok.*;
 import lombok.experimental.*;

@@ -1,7 +1,7 @@
 package com.demo.cdmall1.web.dto;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotBlank;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
 

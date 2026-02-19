@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.board.service;
 
 import java.util.*;
 
-import javax.validation.*;
+import jakarta.validation.*;
 
 import org.springframework.stereotype.*;
 

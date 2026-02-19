@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.questionboard.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.demo.cdmall1.domain.jpa.*;
 import com.demo.cdmall1.util.*;

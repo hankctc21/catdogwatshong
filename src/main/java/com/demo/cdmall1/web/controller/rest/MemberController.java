@@ -5,9 +5,9 @@ import java.net.*;
 import java.nio.file.*;
 import java.security.*;
 
-import javax.servlet.http.*;
-import javax.validation.*;
-import javax.validation.constraints.*;
+import jakarta.servlet.http.*;
+import jakarta.validation.*;
+import jakarta.validation.constraints.*;
 
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;

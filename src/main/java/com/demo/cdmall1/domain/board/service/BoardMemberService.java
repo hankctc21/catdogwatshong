@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.board.service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;

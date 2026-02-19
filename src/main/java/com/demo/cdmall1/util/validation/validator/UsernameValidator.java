@@ -1,6 +1,6 @@
 package com.demo.cdmall1.util.validation.validator;
 
-import javax.validation.*;
+import jakarta.validation.*;
 
 import org.springframework.web.bind.*;
 

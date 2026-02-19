@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.member.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 

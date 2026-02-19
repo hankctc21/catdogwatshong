@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.jpa;
 
 import java.time.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.springframework.data.annotation.*;
 import org.springframework.data.jpa.domain.support.*;

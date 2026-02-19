@@ -1,6 +1,6 @@
 package com.demo.cdmall1.domain.imageboard.service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 
 

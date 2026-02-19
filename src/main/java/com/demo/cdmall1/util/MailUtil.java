@@ -1,7 +1,7 @@
 package com.demo.cdmall1.util;
 
-import javax.mail.*;
-import javax.mail.internet.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.mail.*;

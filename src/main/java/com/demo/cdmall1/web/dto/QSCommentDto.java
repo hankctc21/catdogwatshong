@@ -2,7 +2,7 @@ package com.demo.cdmall1.web.dto;
 
 import java.time.*;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 import com.demo.cdmall1.domain.questionboard.entity.*;
 import com.fasterxml.jackson.annotation.*;

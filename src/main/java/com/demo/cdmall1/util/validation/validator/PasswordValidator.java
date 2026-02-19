@@ -1,6 +1,6 @@
 package com.demo.cdmall1.util.validation.validator;
 
-import javax.validation.*;
+import jakarta.validation.*;
 
 import com.demo.cdmall1.util.validation.annotation.*;
 

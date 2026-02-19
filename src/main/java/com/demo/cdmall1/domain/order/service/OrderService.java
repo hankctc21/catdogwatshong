@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.order.service;
 
 import java.util.*;
 
-import javax.servlet.http.*;
+import jakarta.servlet.http.*;
 
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;

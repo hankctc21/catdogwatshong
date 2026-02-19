@@ -3,7 +3,7 @@ package com.demo.cdmall1.domain.order.service;
 import java.util.*;
 import java.util.stream.*;
 
-import javax.servlet.http.*;
+import jakarta.servlet.http.*;
 
 import org.springframework.stereotype.Service;
 

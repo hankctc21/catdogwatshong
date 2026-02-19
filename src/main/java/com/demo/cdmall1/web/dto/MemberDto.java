@@ -3,7 +3,7 @@ package com.demo.cdmall1.web.dto;
 import java.time.*;
 import java.util.List;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 import org.springframework.format.annotation.*;
 import org.springframework.web.multipart.*;

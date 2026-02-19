@@ -2,7 +2,7 @@ package com.demo.cdmall1.domain.product.entity;
 
 import java.util.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
 

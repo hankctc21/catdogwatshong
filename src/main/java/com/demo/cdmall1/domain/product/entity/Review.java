@@ -3,7 +3,7 @@ package com.demo.cdmall1.domain.product.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;

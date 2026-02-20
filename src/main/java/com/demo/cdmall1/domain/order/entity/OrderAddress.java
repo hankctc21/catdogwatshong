@@ -22,7 +22,6 @@ public class OrderAddress {
 	@SequenceGenerator(name="order_address_seq", sequenceName="order_address_seq", allocationSize=1)
 	private Integer addressNo;
 	
-	@Id
 	@Column(length=10)
 	private String nickname;
 	

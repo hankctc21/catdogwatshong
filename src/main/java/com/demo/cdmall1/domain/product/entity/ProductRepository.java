@@ -36,6 +36,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, Prod
 	public Integer readStockByPno(Integer pno);
 
 	// 상품개수 pno로 읽어오기
-	@Query("select p.stock from Product p where pno = ?1")
+	@Query("select p.stock from Product p where p.pno = ?1")
 	public Integer readStock(Integer pno);
 }

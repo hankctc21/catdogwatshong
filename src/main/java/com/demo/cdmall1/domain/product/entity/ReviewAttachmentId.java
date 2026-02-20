@@ -6,7 +6,8 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ReviewAttachmentId implements Serializable {
 	//private Review review;
 	private Integer rano;
-}
+} 

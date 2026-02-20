@@ -6,7 +6,8 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ProductAttachmentId implements Serializable {
 	private Product product;
 	private Integer ano;
-}
+} 

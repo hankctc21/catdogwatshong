@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class AddressId implements Serializable{
 	private String member;
 	private Integer adno;

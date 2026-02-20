@@ -6,7 +6,8 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class IBAttachmentId implements Serializable {
 	private ImageBoard imageBoard;
 	private Integer ano;
-}
+} 

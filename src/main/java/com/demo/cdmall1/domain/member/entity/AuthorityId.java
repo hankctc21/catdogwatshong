@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 // 2. 복합키 클래스를 사용하는 클래스를 만들때 필드 이름을 그대로 사용해야 한다
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class AuthorityId implements Serializable {
 	private String member;
 	private String authorityName;

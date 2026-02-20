@@ -6,6 +6,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class NBAttachmentId implements Serializable {
 	private NoticeBoard noticeBoard;
 	private Integer ano;

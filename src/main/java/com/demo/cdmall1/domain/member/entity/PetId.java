@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class PetId implements Serializable {
 	private String member;
 	private Integer petno;

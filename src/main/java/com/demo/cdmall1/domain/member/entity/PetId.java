@@ -3,6 +3,7 @@ package com.demo.cdmall1.domain.member.entity;
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor

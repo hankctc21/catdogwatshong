@@ -3,6 +3,7 @@ package com.demo.cdmall1.domain.member.entity;
 import java.io.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 // 복합기본키를 사용하려면 복합키 클래스를 정의해야 한다

@@ -2,9 +2,6 @@ package com.demo.cdmall1.domain.product.entity;
 
 import jakarta.persistence.*;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import com.fasterxml.jackson.annotation.*;
 
 import lombok.*;
@@ -21,7 +18,6 @@ import lombok.*;
 @Table(indexes=@Index(name="prattachment_idx_rno", columnList="rno"))
 public class ReviewAttachment {
 	@Id
-	@NotFound(action = NotFoundAction.IGNORE)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="prattachment_seq")
 	@SequenceGenerator(name="prattachment_seq", sequenceName="prattachment_seq", allocationSize=1)
 	private Integer rano;

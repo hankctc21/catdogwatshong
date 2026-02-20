@@ -5,9 +5,6 @@ import java.util.Set;
 
 import jakarta.persistence.*;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import com.demo.cdmall1.domain.jpa.*;
 import com.demo.cdmall1.domain.member.entity.*;
 import com.demo.cdmall1.web.dto.ReviewDto;
@@ -76,7 +73,6 @@ public class Review extends BaseCreateTimeEntity {
 	@OrderBy(value = "rcno DESC")
 	private Set<ReviewComment> reviewComments;
 
-	@NotFound(action = NotFoundAction.IGNORE)
 	@OneToMany(mappedBy = "review", cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private Set<ReviewAttachment> attachments;
 

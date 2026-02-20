@@ -18,11 +18,12 @@ services:
   app:
     build: .
     container_name: cdmall-app
+    restart: on-failure
     depends_on:
       - oracle-xe
     environment:
       SERVER_PORT: 8080
-      SPRING_DATASOURCE_URL: jdbc:log4jdbc:oracle:thin:@oracle-xe:1521/XEPDB1
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-xe:1521/XEPDB1
       SPRING_DATASOURCE_USERNAME: ${ORACLE_APP_USER}
       SPRING_DATASOURCE_PASSWORD: ${ORACLE_APP_PASSWORD}
       SPRING_MAIL_HOST: ${SPRING_MAIL_HOST}

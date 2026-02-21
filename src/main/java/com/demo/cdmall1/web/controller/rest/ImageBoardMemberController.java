@@ -3,6 +3,7 @@ package com.demo.cdmall1.web.controller.rest;
 import java.net.*;
 import java.security.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,14 @@ import lombok.*;
 public class ImageBoardMemberController {
 	private final ImageBoardMemberService imageMemberService;
 	private final RestTemplate restTemplate;
+	@Value("${app.internal-base-url:http://127.0.0.1:8080}")
+	private String appBaseUrl;
 	
 	@PreAuthorize("isAuthenticated()")
 	@PatchMapping("/imageBoard_member/good_or_bad")
 	public ResponseEntity<?> goodOrBad(Integer ibno, boolean isGood, Principal principal) {
 		LikeOrDislike state = imageMemberService.likeOrDislike(ibno, isGood, principal.getName());
-		URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8081").path("/imageBoard/good_or_bad")
+		URI uri = UriComponentsBuilder.fromHttpUrl(appBaseUrl).path("/imageBoard/good_or_bad")
 				.queryParam("ibno", ibno+"").queryParam("state", state.ordinal()+"").build().toUri();
 		Integer cnt = restTemplate.getForObject(uri.toString(), Integer.class);
 		return ResponseEntity.ok(cnt);
@@ -51,7 +54,7 @@ public class ImageBoardMemberController {
 	@PatchMapping("/imageBoard_member/is_report")
 	public ResponseEntity<?> report(Integer ibno, Principal principal){
 		ReportCheck state = imageMemberService.reportcheck(ibno, principal.getName());
-		URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8081").path("/imageBoard/report")
+		URI uri = UriComponentsBuilder.fromHttpUrl(appBaseUrl).path("/imageBoard/report")
 				.queryParam("ibno", ibno+"").queryParam("state", state.ordinal()+"").build().toUri();
 		Integer cnt = restTemplate.getForObject(uri.toString(), Integer.class);
 		return ResponseEntity.ok(cnt);

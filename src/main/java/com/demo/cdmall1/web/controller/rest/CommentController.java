@@ -6,6 +6,7 @@ import java.util.*;
 
 import jakarta.validation.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.*;
 import org.springframework.validation.*;
@@ -25,6 +26,8 @@ import lombok.*;
 public class CommentController {
 	private final CommentService service;
 	private final RestTemplate template;
+	@Value("${app.internal-base-url:http://127.0.0.1:8080}")
+	private String appBaseUrl;
 	
 	@PostMapping(path="/comments", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insertComment(@Valid CommentDto.Write dto, BindingResult results, Principal principal) throws BindException {
@@ -33,7 +36,7 @@ public class CommentController {
 		
 		// get방식으로 MemberController에게 프사이름을 요청
 		// RestTemplate 요청의 항상 절대 주소....http://~
-		URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8081").path("/members/profile").queryParam("username", principal.getName()).build().toUri();
+		URI uri = UriComponentsBuilder.fromHttpUrl(appBaseUrl).path("/members/profile").queryParam("username", principal.getName()).build().toUri();
 		String profile = template.getForObject(uri.toString(), String.class);
 		
 		// 댓글을 저장
@@ -42,7 +45,7 @@ public class CommentController {
 		// post방식으로 BoardController에게 댓글 수 업데이트를 요청
 		MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
 		params.add("bno", dto.getBno()+"");
-		Integer cnt = template.postForObject("http://localhost:8081/board/comments", params, Integer.class);
+		Integer cnt = template.postForObject(appBaseUrl + "/board/comments", params, Integer.class);
 		System.out.println(cnt);
 		
 		// 댓글들 리턴
@@ -62,7 +65,7 @@ public class CommentController {
 		// post방식으로 BoardController에게 댓글 수 업데이트를 요청
 		MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
 		params.add("bno", dto.getBno()+"");
-		Integer cnt = template.postForObject("http://localhost:8081/board/comments", params, Integer.class);
+		Integer cnt = template.postForObject(appBaseUrl + "/board/comments", params, Integer.class);
 		System.out.println(cnt);
 		
 		// 댓글들 리턴

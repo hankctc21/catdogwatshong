@@ -17,12 +17,12 @@ public interface ZmallConstant {
 	
 	public final static String PROFILE_URL = "/display?imagename=";
 	public static final String ATTACHMENT_URL = "/attachment/filename=";
-	public static final String IMAGE_URL = "http://localhost:8081/board/image?imagename=";
-	public static final String TEMP_URL = "http://localhost:8081/temp/image?imagename=";
-	public static final String PRODUCT_URL = "http://localhost:8081/product/image?imagename=";
+	public static final String IMAGE_URL = "/board/image?imagename=";
+	public static final String TEMP_URL = "/temp/image?imagename=";
+	public static final String PRODUCT_URL = "/product/image?imagename=";
 	
-	public static final String CK_FIND_PATTERN = "http://localhost:8081/temp";
-	public static final String CK_REPLACE_PATTERN = "http://localhost:8081/board";
+	public static final String CK_FIND_PATTERN = "/temp";
+	public static final String CK_REPLACE_PATTERN = "/board";
 	
 	
 }

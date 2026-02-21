@@ -7,6 +7,7 @@ import java.util.*;
 
 import jakarta.validation.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.*;
 import org.springframework.validation.*;
@@ -28,6 +29,8 @@ import lombok.*;
 public class QSCommentController {
 	private final QSCommentService qsservice;
 	private final RestTemplate template;
+	@Value("${app.internal-base-url:http://127.0.0.1:8080}")
+	private String appBaseUrl;
 	
 	@PostMapping(path="/qscomments", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insertQSComment(@Valid QSCommentDto.Write dto, BindingResult results, Principal principal) throws BindException {
@@ -36,7 +39,7 @@ public class QSCommentController {
 		
 		// get방식으로 MemberController에게 프사이름을 요청
 		// RestTemplate 요청의 항상 절대 주소....http://~
-		URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8081").path("/members/profile").queryParam("username", principal.getName()).build().toUri();
+		URI uri = UriComponentsBuilder.fromHttpUrl(appBaseUrl).path("/members/profile").queryParam("username", principal.getName()).build().toUri();
 		String profile = template.getForObject(uri.toString(), String.class);
 		
 		// 댓글을 저장
@@ -45,7 +48,7 @@ public class QSCommentController {
 		// post방식으로 BoardController에게 댓글 수 업데이트를 요청
 		MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
 		params.add("qbno", dto.getQbno()+"");
-		Integer cnt = template.postForObject("http://localhost:8081/questionBoard/comments", params, Integer.class);
+		Integer cnt = template.postForObject(appBaseUrl + "/questionBoard/comments", params, Integer.class);
 
 		// 댓글들 리턴
 		return ResponseEntity.ok(qscomments);
@@ -66,7 +69,7 @@ public class QSCommentController {
 		MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
 		params.add("qbno", dto.getQbno()+"");
 		System.out.println("111111111");
-		Integer cnt = template.postForObject("http://localhost:8081/questionBoard/comments", params, Integer.class);
+		Integer cnt = template.postForObject(appBaseUrl + "/questionBoard/comments", params, Integer.class);
 
 		
 		// 댓글들 리턴

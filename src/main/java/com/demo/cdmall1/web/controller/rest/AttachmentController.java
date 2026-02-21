@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ import lombok.*;
 public class AttachmentController {
 	private final AttachmentService service;
 	private final RestTemplate template;
+	@Value("${app.internal-base-url:http://127.0.0.1:8080}")
+	private String appBaseUrl;
 	
 	// ano로 첨부파일 삭제
 	@DeleteMapping("/attachments")
@@ -30,7 +33,7 @@ public class AttachmentController {
 		// BoardController에게 첨부파일 개수를 줄이라고 요청
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("bno", bno+"");
-		Integer attachmentCnt = template.postForObject("http://localhost:8081/board/attachment", map, Integer.class);
+		Integer attachmentCnt = template.postForObject(appBaseUrl + "/board/attachment", map, Integer.class);
 		
 		return ResponseEntity.ok(attachments);
 	}

@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/nav.css">
 <script src="/script/home/product-showcase.js"></script>
+<style>
+.feature-quick-links { margin: 28px 0 16px; }
+.feature-quick-links h2 { font-size: 24px; margin-bottom: 12px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.feature-card { display:block; padding: 14px 16px; border-radius: 12px; background:#f5f8ff; border:1px solid #dce7ff; color:#172554; text-decoration:none; font-weight:700; }
+.feature-card span { display:block; margin-top:4px; font-size:13px; font-weight:500; color:#334155; }
+</style>
 
 <script th:inline="javascript">
 	const msg = [[${msg}]]
@@ -129,6 +136,17 @@ $(document).ready(function() {
                       <strong>광고 제휴 배너 영역</strong>
                       <span>브랜드 캠페인/시즌 프로모션을 노출하는 운영 영역입니다.</span>
                     </div>
+                  </div>
+                  <div class="feature-quick-links">
+                  	<h2>핵심 기능 바로가기</h2>
+                  	<div class="feature-grid">
+                  		<a class="feature-card" href="/product/bestList">상품 랭킹<span>인기 상품/리뷰 지표 기반 목록</span></a>
+                  		<a class="feature-card" href="/bestBoard/bestList">커뮤니티 랭킹<span>추천 기반 베스트 게시글</span></a>
+                  		<a class="feature-card" href="/order/list">리뷰 작성 진입<span>주문 목록에서 리뷰 작성/관리</span></a>
+                  		<a class="feature-card" href="/chatting/chatmain">실시간 채팅<span>회원 간 1:1 상담/대화</span></a>
+                  		<a class="feature-card" href="/member/transform" sec:authorize="isAuthenticated()">판매자 전환 신청<span>판매자 권한 전환 및 심사 요청</span></a>
+                  		<a class="feature-card" href="/admin/seller_report" sec:authorize="hasRole('ADMIN')">판매자 심사 관리<span>관리자 승인/반려 화면</span></a>
+                  	</div>
                   </div>
         </div>
 		</section>

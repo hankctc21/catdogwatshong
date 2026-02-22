@@ -1,0 +1,6 @@
+ubuntu@pf1-vnc:~/projects/catdogwatshong$ docker compose restart app
+WARN[0000] /home/ubuntu/projects/catdogwatshong/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Restarting 1/1
+ ✔ Container cdmall-app  Started                                                                               0.6s
+ubuntu@pf1-vnc:~/projects/catdogwatshong$ curl -I http://localhost:8080
+curl: (56) Recv failure: Connection reset by peer

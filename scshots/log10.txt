@@ -1,0 +1,148 @@
+cdmall-app  | 03:58:49.451 TRACE 430374 --- [ http-nio-8080-exec-10 ] o.s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.demo.cdmall1.web.controller.rest.MemberController#join(Join, BindingResult)
+cdmall-app  | =============================
+cdmall-app  | KINGSTONE
+cdmall-app  | =============================
+cdmall-app  | =============================
+cdmall-app  | KINGSTONE
+cdmall-app  | =============================
+cdmall-app  | 03:58:49.704 INFO  430627 --- [ http-nio-8080-exec-10 ] jdbc.sqlonly : select member0_.username as username1_12_1_, member0_.create_time as create_time2_12_1_, member0_.birthday as birthday3_12_1_, member0_.checkcode as checkcode4_12_1_, member0_.email as email5_12_1_, member0_.enabled as enabled6_12_1_, member0_.irum as irum7_12_1_, member0_.levels as levels8_12_1_, member0_.login_fail_cnt as login_fail_cnt9_12_1_, member0_.password as password10_12_1_, member0_.point as point11_12_1_, member0_.profile as profile12_12_1_, member0_.tel as tel13_12_1_, address1_.username as username2_0_3_, address1_.adno as adno1_0_3_, address1_.adno as adno1_0_0_, address1_.username as username2_0_0_, address1_.address_name as address_name3_0_0_ from member member0_ left outer join address address1_ on member0_.username=address1_.username where member0_.username='KINGSTONE' order by address1_.adno desc
+cdmall-app  |
+cdmall-app  | 03:58:49.742 INFO  430665 --- [ http-nio-8080-exec-10 ] jdbc.resultsettable :
+cdmall-app  | |----------------|-------------------|----------------|-----------------|-------------|---------------|------------|--------------|----------------------|-----------------|--------------|----------------|------------|---------------|-----------|-----------|---------------|-------------------|
+cdmall-app  | |username1_12_1_ |create_time2_12_1_ |birthday3_12_1_ |checkcode4_12_1_ |email5_12_1_ |enabled6_12_1_ |irum7_12_1_ |levels8_12_1_ |login_fail_cnt9_12_1_ |password10_12_1_ |point11_12_1_ |profile12_12_1_ |tel13_12_1_ |username2_0_3_ |adno1_0_3_ |adno1_0_0_ |username2_0_0_ |address_name3_0_0_ |
+cdmall-app  | |----------------|-------------------|----------------|-----------------|-------------|---------------|------------|--------------|----------------------|-----------------|--------------|----------------|------------|---------------|-----------|-----------|---------------|-------------------|
+cdmall-app  | |----------------|-------------------|----------------|-----------------|-------------|---------------|------------|--------------|----------------------|-----------------|--------------|----------------|------------|---------------|-----------|-----------|---------------|-------------------|
+cdmall-app  |
+cdmall-app  | 03:58:49.889 INFO  430812 --- [ http-nio-8080-exec-10 ] jdbc.sqlonly : select authority0_.authority_name as authority_name1_2_0_, authority0_.username as username2_2_0_ from authority authority0_ where authority0_.authority_name='ROLE_USER' and authority0_.username='KINGSTONE'
+cdmall-app  |
+cdmall-app  | 03:58:49.916 INFO  430839 --- [ http-nio-8080-exec-10 ] jdbc.resultsettable :
+cdmall-app  | |---------------------|---------------|
+cdmall-app  | |authority_name1_2_0_ |username2_2_0_ |
+cdmall-app  | |---------------------|---------------|
+cdmall-app  | |---------------------|---------------|
+cdmall-app  |
+cdmall-app  | 03:58:49.965 INFO  430888 --- [ http-nio-8080-exec-10 ] jdbc.sqlonly : insert into member (create_time, birthday, checkcode, email, enabled, irum, levels, login_fail_cnt, password, point, profile, tel, username) values (to_timestamp('02/13/2026 03:58:49.843', 'mm/dd/yyyy hh24:mi:ss.ff3'), NULL, 'LiABGjgm2b7sLHqW17xU', 'hanatwork21@gmail.com', 0, '한정석', 0, 0, '$2a$10$HdsaUGlaQuN4KjXw/XP2P.Q3DlYPwt7x2HrDev6g/76.OLkwMJmF2', 0, 'default.png', NULL, 'KINGSTONE')
+cdmall-app  |
+cdmall-app  | 03:58:50.742 INFO  431665 --- [ http-nio-8080-exec-10 ] jdbc.sqlonly : insert into authority (authority_name, username) values ('ROLE_USER', 'KINGSTONE')
+cdmall-app  |
+cdmall-app  | 03:58:52.500 ERROR 433423 --- [ http-nio-8080-exec-10 ] o.a.c.c.C.[.[.[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.mail.MailAuthenticationException: Authentication failed; nested exception is javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. For more information, go to
+cdmall-app  | 535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-356629314fbsm10357744a91.0 - gsmtp
+cdmall-app  | ] with root cause
+cdmall-app  | javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. For more information, go to
+cdmall-app  | 535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-356629314fbsm10357744a91.0 - gsmtp
+cdmall-app  |
+cdmall-app  |   at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:947)
+cdmall-app  |   at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:858)
+cdmall-app  |   at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:762)
+cdmall-app  |   at javax.mail.Service.connect(Service.java:342)
+cdmall-app  |   at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+cdmall-app  |   at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+cdmall-app  |   at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:361)
+cdmall-app  |   at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:356)
+cdmall-app  |   at com.demo.cdmall1.util.MailUtil.sendMail(MailUtil.java:48)
+cdmall-app  |   at com.demo.cdmall1.util.MailUtil.sendJoinCheckMail(MailUtil.java:26)
+cdmall-app  |   at com.demo.cdmall1.domain.member.service.MemberService.join(MemberService.java:71)
+cdmall-app  |   at com.demo.cdmall1.domain.member.service.MemberService$$FastClassBySpringCGLIB$$efdd54e8.invoke(<generated>)
+cdmall-app  |   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+cdmall-app  |   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+cdmall-app  |   at com.demo.cdmall1.domain.member.service.MemberService$$EnhancerBySpringCGLIB$$805072e8.join(<generated>)
+cdmall-app  |   at com.demo.cdmall1.web.controller.rest.MemberController.join(MemberController.java:55)
+cdmall-app  |   at com.demo.cdmall1.web.controller.rest.MemberController$$FastClassBySpringCGLIB$$e946a028.invoke(<generated>)
+cdmall-app  |   at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+cdmall-app  |   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:779)
+cdmall-app  |   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+cdmall-app  |   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+cdmall-app  |   at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:123)
+cdmall-app  |   at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+cdmall-app  |   at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+cdmall-app  |   at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:692)
+cdmall-app  |   at com.demo.cdmall1.web.controller.rest.MemberController$$EnhancerBySpringCGLIB$$658333ff.join(<generated>)
+cdmall-app  |   at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+cdmall-app  |   at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+cdmall-app  |   at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+cdmall-app  |   at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+cdmall-app  |   at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+cdmall-app  |   at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+cdmall-app  |   at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+cdmall-app  |   at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+cdmall-app  |   at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+cdmall-app  |   at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+cdmall-app  |   at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1064)
+cdmall-app  |   at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+cdmall-app  |   at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+cdmall-app  |   at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+cdmall-app  |   at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+cdmall-app  |   at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+cdmall-app  |   at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+cdmall-app  |   at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:121)
+cdmall-app  |   at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:115)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+cdmall-app  |   at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:105)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:218)
+cdmall-app  |   at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+cdmall-app  |   at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+cdmall-app  |   at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+cdmall-app  |   at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110)
+cdmall-app  |   at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+cdmall-app  |   at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+cdmall-app  |   at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+cdmall-app  |   at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+cdmall-app  |   at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+cdmall-app  |   at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+cdmall-app  |   at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+cdmall-app  |   at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+cdmall-app  |   at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+cdmall-app  |   at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+cdmall-app  |   at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+cdmall-app  |   at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+cdmall-app  |   at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+cdmall-app  |   at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+cdmall-app  |   at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+cdmall-app  |   at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+cdmall-app  |   at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+cdmall-app  |   at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+cdmall-app  |   at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+cdmall-app  |   at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1726)
+cdmall-app  |   at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+cdmall-app  |   at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+cdmall-app  |   at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+cdmall-app  |   at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+cdmall-app  |   at java.base/java.lang.Thread.run(Unknown Source)
+cdmall-app  | 03:58:52.514 TRACE 433437 --- [ http-nio-8080-exec-10 ] o.s.w.s.m.m.a.RequestMappingHandlerMapping : 2 matching mappings: [{ [/error]}, { [/error], produces [text/html]}]
+cdmall-app  | 03:58:52.515 TRACE 433438 --- [ http-nio-8080-exec-10 ] o.s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+cdmall-app  | 04:00:00.016 INFO  500939 --- [ pool-1-thread-1 ] jdbc.sqlonly : delete from memo where disabled_by_receiver=1 and disabled_by_sender=1
+cdmall-app  |

@@ -1,0 +1,202 @@
+ubuntu@pf1-vnc:~/projects/catdogwatshong$ docker compose logs --tail=200 app
+WARN[0000] /home/ubuntu/projects/catdogwatshong/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+cdmall-app  | 02:48:34.044 TRACE 24290 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.MemoController:
+cdmall-app  |   {POST [/memos/new]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/memos/{mno}]}: read(Integer)
+cdmall-app  |   {GET [/memos/unread]}: unreadMemo(Principal)
+cdmall-app  |   {GET [/memos/send]}: sendList(Principal)
+cdmall-app  |   {GET [/memos/receive]}: receiveList(Principal)
+cdmall-app  |   {PATCH [/memos/disabled_by_sender]}: disabledBySender(List)
+cdmall-app  |   {PATCH [/memo/disabled_by_receiver]}: disabledByReceiver(List)
+cdmall-app  | 02:48:34.047 TRACE 24293 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.IBCommentController:
+cdmall-app  |   {POST [/ibcomments], produces [application/json]}: insertIBComment(Write,BindingResult,Principal)
+cdmall-app  |   {DELETE [/ibcomments], produces [application/json]}: deleteIBComment(Delete,BindingResult,Principal)
+cdmall-app  | 02:48:34.050 TRACE 24296 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.CommentController:
+cdmall-app  |   {POST [/comments], produces [application/json]}: insertComment(Write,BindingResult,Principal)
+cdmall-app  |   {DELETE [/comments], produces [application/json]}: deleteComment(Delete,BindingResult,Principal)
+cdmall-app  | 02:48:34.054 TRACE 24300 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.VocBoardController:
+cdmall-app  |   {PUT [/vocBoard/{vbno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/vocBoard/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/vocBoard/{vbno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/vocBoard/{vbno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/vocBoard/all], produces [application/json]}: list(Integer)
+cdmall-app  |   {POST [/vocBoard/image], produces [application/json]}: ckImageUpload(MultipartFile)
+cdmall-app  |   {GET [/vocBoard/image || /voctemp/image], produces [image/jpeg]}: showImage(String,HttpServletRequest)
+cdmall-app  |   {POST [/vocBoard/new_reply], produces [application/json]}: writeReply(WriteReply,BindingResult,Principal)
+cdmall-app  | 02:48:34.055 TRACE 24301 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.AttachmentController:
+cdmall-app  |   {DELETE [/attachments]}: delete(Integer,Integer)
+cdmall-app  |   {GET [/attachments/{ano}], produces [application/octet-stream]}: viewAttachment(Integer)
+cdmall-app  | 02:48:34.058 TRACE 24304 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.AdminController:
+cdmall-app  |   {GET [/api/admin/data1], produces [application/json]}: getData1()
+cdmall-app  |   {GET [/api/admin/data2], produces [application/json]}: getData2()
+cdmall-app  | 02:48:34.062 TRACE 24308 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.ChattingController:
+cdmall-app  |   {GET [/message/add], produces [text/plain]}: saveMessage(Save,BindingResult)
+cdmall-app  |   {GET [/message/memberinfo]}: getMemberInfo(Principal)
+cdmall-app  |   {GET [/message/authorityinfo]}: getAuthorityInfo(FindByAuthority,BindingResult)
+cdmall-app  |   {GET [/chatting/list], produces [application/json]}: chatList(Integer,String)
+cdmall-app  |   {GET [/chatting/readchathistory/{chathno}], produces [application/json]}: readChatHistory(Integer)
+cdmall-app  | 02:48:34.066 TRACE 24312 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.BoardController:
+cdmall-app  |   {PUT [/board/{bno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/board/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/board/{bno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/board/{bno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/board/all], produces [application/json]}: list(Integer,String,String)
+cdmall-app  |   {POST [/board/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {GET [/board/warnlist], produces [application/json]}: warnlist(Integer,Integer)
+cdmall-app  |   {GET [/board/best], produces [application/json]}: bestlist(Integer,Integer)
+cdmall-app  |   {POST [/board/comments]}: CommentCnt(Integer)
+cdmall-app  |   {POST [/board/inactive]}: update_isActive(Integer)
+cdmall-app  |   {GET [/board/good_or_bad]}: GoodOrBadCnt(Integer,Integer)
+cdmall-app  |   {GET [/board/warn]}: WarnCnt(Integer,Integer)
+cdmall-app  |   {POST [/board/image], produces [application/json]}: ckImageUpload(MultipartFile)
+cdmall-app  |   {POST [/board/attachment]}: updateAttachmentCnt(Integer)
+cdmall-app  |   {POST [/bestBoard/searchBestAll], produces [application/json]}: searchBest(Integer,HttpSession)
+cdmall-app  |   {GET [/board/image || /temp/image], produces [image/jpeg]}: showImage(String,HttpServletRequest)
+cdmall-app  | 02:48:34.069 TRACE 24315 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.NoticeBoardController:
+cdmall-app  |   {PUT [/noticeBoard/{nbno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/noticeBoard/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/noticeBoard/{nbno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/noticeBoard/{nbno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/noticeBoard/all], produces [application/json]}: list(Integer)
+cdmall-app  |   {POST [/noticeBoard/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {POST [/noticeBoard/image], produces [application/json]}: ckImageUpload(MultipartFile)
+cdmall-app  |   {GET [/noticeBoard/image || /nbtemp/image], produces [image/jpeg]}: showImage(String)
+cdmall-app  | 02:48:34.072 TRACE 24318 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.CatogoryController:
+cdmall-app  |   {GET [/categories], produces [application/json]}: read(String)
+cdmall-app  |   {GET [/categories/all], produces [application/json]}: readAll()
+cdmall-app  | 02:48:34.075 TRACE 24321 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.UsedBoardController:
+cdmall-app  |   {PUT [/usedBoard/{ubno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/usedBoard/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/usedBoard/{ubno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/usedBoard/{ubno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/usedBoard/all], produces [application/json]}: list(Integer,String)
+cdmall-app  |   {POST [/usedBoard/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {GET [/usedBoard/warnlist], produces [application/json]}: warnlist(Integer,Integer)
+cdmall-app  |   {POST [/usedBoard/comments]}: CommentCnt(Integer)
+cdmall-app  |   {GET [/usedBoard/good_or_bad]}: GoodOrBadCnt(Integer,Integer)
+cdmall-app  |   {GET [/usedBoard/warn]}: WarnCnt(Integer,Integer)
+cdmall-app  |   {POST [/usedBoard/image], produces [application/json]}: ckImageUpload(MultipartFile)
+cdmall-app  |   {GET [/usedBoard/image || /ubtemp/image], produces [image/jpeg]}: showImage(String,HttpServletRequest)
+cdmall-app  | 02:48:34.077 TRACE 24323 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.QuestionBoardController:
+cdmall-app  |   {PUT [/questionBoard/{qbno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/questionBoard/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/questionBoard/{qbno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/questionBoard/{qbno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/questionBoard/all], produces [application/json]}: list(Integer,String)
+cdmall-app  |   {POST [/questionBoard/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {POST [/questionBoard/comments]}: CommentCnt(Integer)
+cdmall-app  |   {GET [/questionBoard/good_or_bad]}: GoodOrBadCnt(Integer,Integer)
+cdmall-app  |   {POST [/questionBoard/image], produces [application/json]}: ckImageUpload(MultipartFile)
+cdmall-app  |   {GET [/questionBoard/image || /qbtemp/image], produces [image/jpeg]}: showImage(String,HttpServletRequest)
+cdmall-app  | 02:48:34.079 TRACE 24325 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.AddressController:
+cdmall-app  |   {DELETE [/address]}: delete(Principal,Integer)
+cdmall-app  |   {GET [/address]}: choice(Principal,Integer)
+cdmall-app  | 02:48:34.082 TRACE 24328 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.ImageBoardController:
+cdmall-app  |   {PUT [/imageBoard/{ibno}], produces [application/json]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/imageBoard/new], produces [application/json]}: write(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/imageBoard/{ibno}], produces [application/json]}: read(Integer,Principal)
+cdmall-app  |   {DELETE [/imageBoard/{ibno}]}: delete(Integer,Principal)
+cdmall-app  |   {GET [/imageBoard/all], produces [application/json]}: list(Integer)
+cdmall-app  |   {POST [/imageBoard/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {GET [/imageBoard/warnlist], produces [application/json]}: warnlist(Integer,Integer)
+cdmall-app  |   {POST [/imageBoard/inactive]}: update_isActive(Integer)
+cdmall-app  |   {GET [/imageBoard/good_or_bad]}: GoodOrBadCnt(Integer,Integer)
+cdmall-app  |   {POST [/imageBoard/ibcomments]}: IBCommentCnt(Integer)
+cdmall-app  |   {GET [/imageBoard/report]}: ReportCnt(Integer,Integer)
+cdmall-app  |   {GET [/imageBoard/image || /ibtemp/image], produces [image/jpeg]}: showImage(String)
+cdmall-app  | 02:48:34.086 TRACE 24332 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.ProductMemberController:
+cdmall-app  |   {PATCH [/product_member/good_or_bad]}: goodOrBad(Integer,boolean,Principal)
+cdmall-app  |   {GET [/product_wish/wish]}: findAllByUsername(Principal)
+cdmall-app  |   {GET [/product_member/is_exist]}: isExist(Integer,String)
+cdmall-app  | 02:48:34.092 TRACE 24338 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.MemberController:
+cdmall-app  |   {POST [/members/block]}: block(String)
+cdmall-app  |   {POST [/members/member]}: update(Update,BindingResult,Principal)
+cdmall-app  |   {POST [/members/new], produces [text/plain]}: join(Join,BindingResult)
+cdmall-app  |   {GET [/members/member], produces [application/json]}: read(Principal,HttpSession)
+cdmall-app  |   {GET [/members/member/address], produces [application/json]}: readAddress(Principal)
+cdmall-app  |   {POST [/members/member/address], produces [application/json]}: addAddress(String,Principal)
+cdmall-app  |   {GET [/members/member/pets], produces [application/json]}: readPet(Principal)
+cdmall-app  |   {POST [/members/member/pets], produces [application/json]}: addPet(Add,BindingResult,Principal)
+cdmall-app  |   {GET [/display], produces [application/octet-stream]}: showProfile(String)
+cdmall-app  |   {GET [/members/profile]}: getProfile(String)
+cdmall-app  |   {GET [/members/username/check], produces [text/plain]}: idAvailableCheck(String)
+cdmall-app  |   {GET [/members/email/check], produces [text/plain]}: emailAvailableCheck(String)
+cdmall-app  |   {GET [/members/join/check]}: joinCheck(String)
+cdmall-app  |   {GET [/members/member/email], produces [text/plain]}: findId(String)
+cdmall-app  |   {PATCH [/members/member/password/temp], produces [text/plain]}: resetPassword(ResetPwd,BindingResult)
+cdmall-app  |   {PATCH [/members/member/password], produces [text/plain]}: changePassword(ChangePwd,BindingResult,Principal)
+cdmall-app  |   {GET [/members/member/password/check], produces [text/plain]}: checkPassword(String,Principal,HttpSession)
+cdmall-app  |   {DELETE [/members/member]}: resign(SecurityContextLogoutHandler,HttpServletRequest,HttpServletResponse,Authentication)
+cdmall-app  |   {GET [/members/role_user]}: listUser(Integer)
+cdmall-app  |   {GET [/members/role_admin]}: listAdmin(Integer)
+cdmall-app  |   {POST [/members/addSeller], produces [application/json]}: addSeller(String,String,Principal)
+cdmall-app  |   {GET [/members/seller]}: listSeller(Integer)
+cdmall-app  |   {POST [/members/seller/active]}: activeSeller(String)
+cdmall-app  |   {POST [/members/seller/inactive]}: inactiveSeller(String)
+cdmall-app  | 02:48:34.095 TRACE 24341 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.QSCommentController:
+cdmall-app  |   {POST [/qscomments], produces [application/json]}: insertQSComment(Write,BindingResult,Principal)
+cdmall-app  |   {DELETE [/qscomments], produces [application/json]}: deleteQSComment(Delete,BindingResult,Principal)
+cdmall-app  | 02:48:34.098 TRACE 24344 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.CartController:
+cdmall-app  |   {POST [/carts]}: add(Cart)
+cdmall-app  |   {GET [/carts], produces [application/json]}: read()
+cdmall-app  |   {DELETE [/carts], produces [application/json]}: delete(List)
+cdmall-app  |   {GET [/carts/get_url]}: getUrl()
+cdmall-app  |   {PATCH [/carts/increase], produces [application/json]}: increase(Integer)
+cdmall-app  |   {PATCH [/carts/decrease], produces [application/json]}: decrease(Integer)
+cdmall-app  | 02:48:34.109 TRACE 24355 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.ProductController:
+cdmall-app  |   {GET [/products/{pno}], produces [application/json]}: read(Integer)
+cdmall-app  |   {GET [/products/all], produces [application/json]}: list(Integer,String)
+cdmall-app  |   {POST [/products/new], produces [application/json]}: insert(Write,BindingResult,Principal)
+cdmall-app  |   {POST [/shop/searchAll], produces [application/json]}: search(Integer,HttpSession)
+cdmall-app  |   {POST [/product/save_url]}: Continue(String)
+cdmall-app  |   {GET [/products/wishList], produces [application/json]}: withList(Integer,Principal)
+cdmall-app  |   {DELETE [/products/wish_delete]}: productWishDelete(List)
+cdmall-app  |   {GET [/products/avgOfStar], produces [application/json]}: avgOfstar(Integer)
+cdmall-app  |   {GET [/product/good_or_bad]}: GoodOrBadCnt(Integer,Integer)
+cdmall-app  |   {GET [/products/reviewList], produces [application/json]}: reviewList(Integer,Integer)
+cdmall-app  |   {POST [/products/reviewNew], produces [application/json]}: reviewWrite(Write,BindingResult,Principal)
+cdmall-app  |   {GET [/products/review/{rno}], produces [application/json]}: reviewRead(Integer)
+cdmall-app  |   {GET [/products/bestList], produces [application/json]}: bestList(Integer,String)
+cdmall-app  |   {GET [/products/image || /ptemp/image], produces [image/jpeg]}: showImage(String,HttpServletRequest)
+cdmall-app  |   {GET [/products/stock], produces [application/json]}: checkStock(Integer,Integer)
+cdmall-app  |   {GET [/products/allByCateg], produces [application/json]}: listByCateg(Integer,String)
+cdmall-app  |   {GET [/products/allByRootCateg], produces [application/json]}: listByRootCateg(Integer,String)
+cdmall-app  |   {GET [/products/allByMultiCateg], produces [application/json]}: listByMultiCateg(ListByMultiCateg,BindingResult)
+cdmall-app  |   {DELETE [/products/currentWishDelete], produces [application/json]}: productCurrentWishDelete(Integer)
+cdmall-app  |   {GET [/products/newList], produces [application/json]}: newList(Integer,String)
+cdmall-app  | 02:48:34.111 TRACE 24357 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   c.d.c.w.c.r.PetController:
+cdmall-app  |   {DELETE [/pets]}: delete(Principal,Integer)
+cdmall-app  | 02:48:34.114 TRACE 24360 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping :
+cdmall-app  |   o.s.b.a.w.s.e.BasicErrorController:
+cdmall-app  |   { [/error]}: error(HttpServletRequest)
+cdmall-app  |   { [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+cdmall-app  | 02:48:34.121 DEBUG 24367 --- [ main ] o.s.w.s.m.m.a.RequestMappingHandlerMapping : 253 mappings in 'requestMappingHandlerMapping'
+cdmall-app  | 02:48:34.159 INFO  24405 --- [ main ] o.s.b.a.w.s.WelcomePageHandlerMapping : Adding welcome page template: index
+cdmall-app  | 02:48:34.739 INFO  24985 --- [ main ] o.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+cdmall-app  | 02:48:34.809 INFO  25055 --- [ main ] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8080 (http) with context path ''
+cdmall-app  | 02:48:34.814 INFO  25060 --- [ main ] o.s.m.s.b.SimpleBrokerMessageHandler : Starting...
+cdmall-app  | 02:48:34.814 INFO  25060 --- [ main ] o.s.m.s.b.SimpleBrokerMessageHandler : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@294ebe11]]
+cdmall-app  | 02:48:34.815 INFO  25061 --- [ main ] o.s.m.s.b.SimpleBrokerMessageHandler : Started.
+cdmall-app  | 02:48:34.843 INFO  25089 --- [ main ] o.s.s.a.ScheduledAnnotationBeanPostProcessor : More than one TaskScheduler bean exists within the context, and none is named 'taskScheduler'. Mark one of them as primary or name it 'taskScheduler' (possibly as an alias); or implement the SchedulingConfigurer interface and call ScheduledTaskRegistrar#setScheduler explicitly within the configureTasks() callback: [getTaskScheduler, defaultSockJsTaskScheduler, messageBrokerTaskScheduler]
+cdmall-app  | 02:48:34.869 INFO  25115 --- [ main ] com.demo.cdmall1.CdmallApplication : Started CdmallApplication in 24.344 seconds (JVM running for 25.878)
+cdmall-app  | 02:49:33.315 INFO  83561 --- [ MessageBroker-1 ] o.s.w.s.c.WebSocketMessageBrokerStats : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks

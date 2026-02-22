@@ -95,7 +95,10 @@ public class NoticeBoardController {
 		// 검색
 		@PostMapping(path="/noticeBoard/searchAll", produces=MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<?> search(@RequestParam(defaultValue = "1") Integer pageno, HttpSession session){
-			String word = session.getAttribute("word").toString();
+			Object wordObj = session.getAttribute("word");
+			if(wordObj==null || wordObj.toString().isBlank())
+				return ResponseEntity.badRequest().body("검색어가 없습니다");
+			String word = wordObj.toString();
 			URI uri = UriComponentsBuilder.newInstance().path("/noticeBoard/search").queryParam("word", word).build().toUri();
 			Map<String, Object> board = noticeService.readSearchAll(pageno, word);
 			return ResponseEntity.created(uri).body(board);

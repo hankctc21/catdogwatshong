@@ -134,7 +134,10 @@ private final BoardService service;
 	// 검색
 	@PostMapping(path="/board/searchAll", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> search(@RequestParam(defaultValue = "1") Integer pageno, HttpSession session){
-		String word = session.getAttribute("word").toString();
+		Object wordObj = session.getAttribute("word");
+		if(wordObj==null || wordObj.toString().isBlank())
+			return ResponseEntity.badRequest().body("검색어가 없습니다");
+		String word = wordObj.toString();
 		URI uri = UriComponentsBuilder.newInstance().path("/board/search").queryParam("word", word).build().toUri();
 		Map<String, Object> board = service.readSearchAll(pageno, word);
 		return ResponseEntity.created(uri).body(board);
@@ -143,7 +146,10 @@ private final BoardService service;
 	// 추천게시판 검색
 	@PostMapping(path="/bestBoard/searchBestAll", produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> searchBest(@RequestParam(defaultValue = "1") Integer pageno, HttpSession session){
-		String word = session.getAttribute("word").toString();
+		Object wordObj = session.getAttribute("word");
+		if(wordObj==null || wordObj.toString().isBlank())
+			return ResponseEntity.badRequest().body("검색어가 없습니다");
+		String word = wordObj.toString();
 		URI uri = UriComponentsBuilder.newInstance().path("/bestBoard/search").queryParam("word", word).build().toUri();
 		Map<String, Object> board = service.searchBestAll(pageno, word);
 		return ResponseEntity.created(uri).body(board);

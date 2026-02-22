@@ -80,7 +80,7 @@ public class ProductDslRepository {
 		BooleanBuilder condition = new BooleanBuilder();
 		if (categCodes != null) {
 			for(String code : categCodes) {
-				condition.or(qcategory.superCategory().categoryCode.like(code+"%"));
+				condition.or(qcategory.superCategory.categoryCode.like(code+"%"));
 			}
 		}
 		
@@ -141,7 +141,7 @@ public class ProductDslRepository {
 				
 		if (categCodes != null) {
 			for(String code : categCodes) {
-				condition.or(qcategory.superCategory().categoryCode.like(code+"%"));
+				condition.or(qcategory.superCategory.categoryCode.like(code+"%"));
 			}
 		}
 		

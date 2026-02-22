@@ -70,7 +70,7 @@ $(function() {
 <div th:text="${member}"></div>
 <div id="page">
 	<div id="mainForMemberRead">
-		<aside id="aside" th:replace="fragments/aside">
+		<aside id="aside" th:replace="~{fragments/aside}">
 		</aside>
 		<section id="sectionForMemberRead">
 			<div id="buttons" style="margin-bottom: 10px; text-align: right;" >
@@ -170,7 +170,7 @@ $(function() {
 			</div>
 		</section>
 	</div>
-	<footer id="footer" th:replace="fragments/footer">
+	<footer id="footer" th:replace="~{fragments/footer}">
 	</footer>
 </div>
 </body>

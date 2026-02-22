@@ -1,0 +1,19 @@
+ubuntu@pf1-vnc:~/projects/catdogwatshong$ COMPOSE_BAKE=false docker compose up -d --build
+WARN[0000] /home/ubuntu/projects/catdogwatshong/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 7/7
+ ✔ oracle-xe Pulled                                                                                           51.3s
+   ✔ f7b0b443446e Pull complete                                                                               10.5s
+   ✔ d3746687fc59 Pull complete                                                                               21.6s
+   ✔ 3820d7bb3a88 Pull complete                                                                               26.3s
+   ✔ 4f8ebc90375b Pull complete                                                                               32.3s
+   ✔ bea495abb2fa Pull complete                                                                               44.0s
+   ✔ 073f36588906 Pull complete                                                                               48.3s
+[+] Building 1.5s (3/3) FINISHED                                                                     docker:default
+ => [app internal] load build definition from Dockerfile                                                       0.0s
+ => => transferring dockerfile: 373B                                                                           0.0s
+ => CANCELED [app internal] load metadata for docker.io/library/eclipse-temurin:11-jre                         1.5s
+ => ERROR [app internal] load metadata for docker.io/library/maven:3.8.8-openjdk-11                            1.4s
+------
+ > [app internal] load metadata for docker.io/library/maven:3.8.8-openjdk-11:
+------
+failed to solve: maven:3.8.8-openjdk-11: failed to resolve source metadata for docker.io/library/maven:3.8.8-openjdk-11: docker.io/library/maven:3.8.8-openjdk-11: not found

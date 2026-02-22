@@ -31,12 +31,12 @@ public class OrderDslRepository {
 	
 	public List<ReviewAvailable> reviewAvailableList(String loginId) {
 		return factory.select(Projections.constructor(OrderDto.ReviewAvailable.class, order.orderNo, order.createTime, orderItem.image, orderItem.manufacturer, orderItem.name, orderItem.pno, orderItem.orderItemNo))
-			.from(order).innerJoin(order.orderItems, orderItem).where(order.address().username.eq(loginId)).orderBy(order.createTime.desc()).fetch();
+			.from(order).innerJoin(order.orderItems, orderItem).where(order.address.username.eq(loginId)).orderBy(order.createTime.desc()).fetch();
 	}
 
 	public ReviewAvailable getOrderItem(Integer orderNo, Integer orderItemNo, String loginId) {
 		return factory.select(Projections.constructor(OrderDto.ReviewAvailable.class, order.orderNo, order.createTime, orderItem.image, orderItem.manufacturer, orderItem.name, orderItem.pno, orderItem.orderItemNo))
-				.from(order).innerJoin(order.orderItems, orderItem).where(order.address().username.eq(loginId).and(orderItem.orderItemNo.eq(orderItemNo)))
+				.from(order).innerJoin(order.orderItems, orderItem).where(order.address.username.eq(loginId).and(orderItem.orderItemNo.eq(orderItemNo)))
 				.orderBy(order.createTime.desc()).fetchOne();
 	}
 }

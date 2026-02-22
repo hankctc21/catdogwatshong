@@ -173,7 +173,6 @@
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
-                        <arg>-Aquerydsl.entityAccessors=true</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>

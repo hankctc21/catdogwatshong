@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UsedBoardMvcController {
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/usedBoard/list")
 	public void list() {
 	}
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/usedBoard/read")
 	public void read() {
 	}

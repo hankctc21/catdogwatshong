@@ -20,13 +20,14 @@ header, nav, aside, footer, section ,li, a{
 </style>
 
 <script type="text/javascript">
-	document.addEventListener('keydown', function(event) {
-	  if (event.keyCode === 13) {
-	    event.preventDefault();
-	  };
-	}, true);
 	$(document).ready(()=>{
-		
+		$(document).on("keydown", "#word", (event)=>{
+			if (event.key === "Enter") {
+				event.preventDefault();
+				$("#searshButton").trigger("click");
+			}
+		});
+
 		$("#searshButton").on("click", ()=>{
 			const words = ($("#word").val() || "").trim();
 			const pageno = 1;
@@ -66,13 +67,12 @@ header, nav, aside, footer, section ,li, a{
 			<li><a href="/product/listByRootCateg?pageno=1&categoryCode=2">냥이용품</a></li>
 			<li><a href="#" id=food>푸드</a></li>
 			<li><a href="#" id=living>리빙</a></li>
-			<nav class="navbar navbar-light bg-light">
-			  <a class="navbar-brand"></a>
-			  <form class="form-inline">
+			<li class="search-item">
+			  <form class="form-inline search-form" onsubmit="return false;">
 			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="상품명 검색" aria-label="Search" id="word">
 			    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searshButton"> <span class="fas fa-search"></span> </button>
 			  </form>
-			</nav>
+			</li>
     	</ul>
 	
     	<ul sec:authorize="isAuthenticated()" class="nav navbar-nav" id="menu_authenticated">
@@ -82,13 +82,12 @@ header, nav, aside, footer, section ,li, a{
 			<li><a href="/product/listByRootCateg?pageno=1&categoryCode=2">냥이용품</a></li>
 			<li><a href="#" id=food>푸드</a></li>
 			<li><a href="#" id=living>리빙</a></li>
-			<nav class="navbar navbar-light bg-light">
-			  <a class="navbar-brand"></a>
-			  <form class="form-inline">
+			<li class="search-item">
+			  <form class="form-inline search-form" onsubmit="return false;">
 			    <input class="form-control mr-sm-2" style="width:205px; background: white;" type="search" placeholder="상품명 검색" aria-label="Search" id="word">
 			    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searshButton"><span class="fas fa-search"></span></button>
 			  </form>
-			</nav>
+			</li>
     	</ul>
 	</div>
 	<script th:inline="javascript">

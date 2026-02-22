@@ -28,6 +28,8 @@ function renderShowcase(url, targetSelector, options) {
 		}
 
 		items.forEach(function(product) {
+			const pno = Number(product.pno);
+			const canOpenDetail = !Number.isNaN(pno) && pno > 0;
 			const imageName = encodeURIComponent(product.imageFileName || "__missing__");
 			const imageSrc = "/products/image?imagename=" + imageName;
 			const priceText = Number(product.price || 0).toLocaleString("ko-KR") + "원";
@@ -46,7 +48,11 @@ function renderShowcase(url, targetSelector, options) {
 						})
 						.css({width: "150px", height: "150px", objectFit: "cover", cursor: "pointer"})
 						.on("click", function() {
-							location.href = "/product/read?pno=" + product.pno;
+							if (!canOpenDetail) {
+								alert("상품 상세 정보가 준비되지 않았습니다.");
+								return;
+							}
+							location.href = "/product/read?pno=" + pno;
 						})
 				)
 				.appendTo($li);
@@ -58,7 +64,11 @@ function renderShowcase(url, targetSelector, options) {
 				.css("cursor", "pointer")
 				.text("MORE")
 				.on("click", function() {
-					location.href = "/product/read?pno=" + product.pno;
+					if (!canOpenDetail) {
+						alert("상품 상세 정보가 준비되지 않았습니다.");
+						return;
+					}
+					location.href = "/product/read?pno=" + pno;
 				})
 				.appendTo($li);
 		});

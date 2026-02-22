@@ -16,7 +16,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 	font-family: 'Jua', sans-serif;
 } 
 
-.container-fluid {
+#nav .container-fluid {
      width: 100%;
      max-width: 1280px;
      display: flex;
@@ -63,7 +63,7 @@ border-radius: 50px;
 }
 
 
-#menu_anonymous {
+#nav #menu_anonymous {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
@@ -73,7 +73,7 @@ border-radius: 50px;
 	justify-content: center;
 	
 }
-#menu_authenticated {
+#nav #menu_authenticated {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
@@ -84,53 +84,61 @@ border-radius: 50px;
 	
 }
 
-#menu_anonymous >li {
+#nav #menu_anonymous >li {
 	margin-left: 0;
 	position: relative;
 }
-#menu_anonymous >li >a{
+#nav #menu_anonymous > li.search-item,
+#nav #menu_authenticated > li.search-item {
+	margin-left: 8px;
+}
+#nav #menu_anonymous >li >a{
 	color: rgb(7, 7, 7);
 	padding: 8px 10px;
 	border-radius: 10px;
 	font-size: 18px;
 }
 
-#menu_anonymous li::after {position: absolute; content:""; display: block; 
+#nav #menu_anonymous li::after {position: absolute; content:""; display: block; 
      border-bottom: 3px solid #000; transition: all 250ms ease-out; 
       width: 0;} 
-#menu_anonymous li:hover::after {transition: all 250ms ease-out; 
+#nav #menu_anonymous li:hover::after {transition: all 250ms ease-out; 
          left: 0%; width: 100%;}
 
-#menu_authenticated li::after {position: absolute; content:""; display: block; 
+#nav #menu_authenticated li::after {position: absolute; content:""; display: block; 
      border-bottom: 3px solid #000; transition: all 250ms ease-out; 
       width: 0;} 
-#menu_authenticated li:hover::after {transition: all 250ms ease-out; 
+#nav #menu_authenticated li:hover::after {transition: all 250ms ease-out; 
          left: 0%; width: 100%;}
 
 
-#menu_authenticated >li {
+#nav #menu_authenticated >li {
 	margin-left: 0;
 	position: relative;
 }
+#nav #menu_anonymous > li.search-item::after,
+#nav #menu_authenticated > li.search-item::after {
+	display: none;
+}
 
-#menu_authenticated >li >a {
+#nav #menu_authenticated >li >a {
 	color: rgb(7, 7, 7);
 	padding: 8px 10px;
 	border-radius: 10px;
 	font-size: 18px;
 }
 
-#menu_authenticated > li > a:hover,
-#menu_anonymous > li > a:hover {
+#nav #menu_authenticated > li > a:hover,
+#nav #menu_anonymous > li > a:hover {
 	background: #edf4ff;
 }
 
 @media (max-width: 1024px) {
-	.container-fluid {
+	#nav .container-fluid {
 		font-size: 16px;
 	}
-	#menu_authenticated > li > a,
-	#menu_anonymous > li > a {
+	#nav #menu_authenticated > li > a,
+	#nav #menu_anonymous > li > a {
 		font-size: 15px;
 		padding: 6px 8px;
 	}

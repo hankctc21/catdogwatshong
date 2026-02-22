@@ -37,13 +37,25 @@ const main = {
 		window._this = this;
 		$("#add_to_cart").on("click", this.addToCart);
 		$("#buy").on("click", this.buy);
-				
-		const pno = location.search.substr(5);
-		$.ajax("/products/" + pno).done(result=>{
-				
-			product = result;
-			this.printPage();
-		});
+
+		const pnoParam = new URLSearchParams(window.location.search).get("pno");
+		const pno = Number(pnoParam);
+		if (!pnoParam || Number.isNaN(pno) || pno <= 0) {
+			alert("유효하지 않은 상품 주소입니다.");
+			location.href = "/product/newList";
+			return;
+		}
+
+		$.ajax("/products/" + pno)
+			.done(result => {
+				product = result;
+				this.printPage();
+			})
+			.fail(xhr => {
+				const message = (xhr && xhr.responseText) ? xhr.responseText : "상품 상세 정보를 불러오지 못했습니다.";
+				alert(message);
+				location.href = "/product/newList";
+			});
 	},
 		
 		// 개수와 총 가격을 출력하는 일이 여러번이라 메서드로 분리
@@ -54,7 +66,11 @@ const main = {
 	}, 
 		
 	printPage: function() {
-		$("#image").attr("src", "/upload/productimage/" + product.imageFileName);
+		$("#image")
+			.attr("src", "/products/image?imagename=" + encodeURIComponent(product.imageFileName || "__missing__"))
+			.on("error", function() {
+				$(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음");
+			});
 		$("#manufacturer").text(product.manufacturer);
 		$("#name").text(product.name);
 		if(isLogin==true ) {$("<span>").text("").css({"font-size":"15px","float":"right","positon":"fixed"}).appendTo($("#manufacturer"))};
@@ -175,7 +191,11 @@ const main = {
 	},
 	
 	getStar: function(){
-		let pno = location.search.substr(5);
+		const pnoParam = new URLSearchParams(window.location.search).get("pno");
+		const pno = Number(pnoParam);
+		if (!pnoParam || Number.isNaN(pno) || pno <= 0) {
+			return;
+		}
 		
 		let num = null;
 		const param = {

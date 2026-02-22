@@ -72,6 +72,13 @@
 				$form.submit();
 				
 			});
+
+			$("#userid, #userpwd").on("keydown", (e)=>{
+				if(e.key === "Enter"){
+					e.preventDefault();
+					$("#login").trigger("click");
+				}
+			});
 			
 			$("#join").on("click", ()=>{
 				location.href = "/member/join";
@@ -140,7 +147,7 @@
                                             <input type="text" class="form-control form-control-user"
                                                 id="userid" aria-describedby="emailHelp"
                                                 placeholder="아이디" autofocus="autofocus">
-                                  				<span class="helper-text" id="userid"></span>
+                                  				<span class="helper-text" id="userid_msg"></span>
                                                 
                                         </div>
                                         <div class="form-group">

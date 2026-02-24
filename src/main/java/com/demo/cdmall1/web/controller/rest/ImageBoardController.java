@@ -10,6 +10,7 @@ import jakarta.servlet.http.*;
 import jakarta.validation.*;
 
 import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.*;
 import org.springframework.validation.*;
 import org.springframework.validation.BindException;
@@ -27,20 +28,32 @@ import lombok.*;
 @RestController
 public class ImageBoardController {
 	private final ImageBoardService imageService;
+	@Value("${app.upload.image-dir:upload/image}")
+	private String imageDir;
 	// 이미지 첨부파일 보기
-		@GetMapping(path={"/imageBoard/image", "/ibtemp/image"}, produces=MediaType.IMAGE_JPEG_VALUE)
+		@GetMapping(path={"/imageBoard/image", "/ibtemp/image"})
 		public ResponseEntity<?> showImage(@RequestParam String imagename) throws IOException {
-			File file = new File(ZmallConstant.IMAGE_FOLDER + imagename);
-			System.out.println(file);
+			File file = new File(imageDir, imagename);
+			if(file.exists()==false) {
+				file = new File(ZmallConstant.IMAGE_FOLDER + imagename);
+			}
 			HttpHeaders headers = new HttpHeaders();
+			if(file.exists()==false) {
+				String svg = "<svg xmlns='http://www.w3.org/2000/svg' width='640' height='420'>"
+						+ "<defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'>"
+						+ "<stop offset='0%' stop-color='#e2e8f0'/><stop offset='100%' stop-color='#cbd5e1'/>"
+						+ "</linearGradient></defs>"
+						+ "<rect width='100%' height='100%' fill='url(#g)'/>"
+						+ "<text x='50%' y='48%' text-anchor='middle' dominant-baseline='middle' "
+						+ "font-size='22' fill='#334155'>이미지 준비중</text>"
+						+ "<text x='50%' y='56%' text-anchor='middle' dominant-baseline='middle' "
+						+ "font-size='14' fill='#64748b'>" + imagename + "</text></svg>";
+				headers.setContentType(MediaType.parseMediaType("image/svg+xml;charset=UTF-8"));
+				return ResponseEntity.ok().headers(headers).body(svg.getBytes());
+			}
 			headers.setContentType(ZmallUtil.getMediaType(imagename));
 			headers.add("Content-Disposition", "inline;filename="  + imagename);
-			try {
-				return ResponseEntity.ok().headers(headers).body(Files.readAllBytes(file.toPath()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return null;
+			return ResponseEntity.ok().headers(headers).body(Files.readAllBytes(file.toPath()));
 		}
 		
 		@PreAuthorize("isAuthenticated()")

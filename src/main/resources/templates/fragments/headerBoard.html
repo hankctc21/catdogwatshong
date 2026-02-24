@@ -79,13 +79,15 @@
       $(this).find(".nav-sub").hide();
     });
 
-    $(window).on('scroll', function() {
-      if ($(window).scrollTop() > 120) {
+    const updateHeaderBackground = function() {
+      if ($(window).scrollTop() > 0) {
         $('.header').addClass('backgroundChange');
-      } else if ($(window).scrollTop() < 60) {
+      } else {
         $('.header').removeClass('backgroundChange');
       }
-    });
+    };
+    updateHeaderBackground();
+    $(window).on('scroll', updateHeaderBackground);
   });
 </script>
 </body>

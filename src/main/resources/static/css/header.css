@@ -27,7 +27,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 } 
 
 .header-main {
-	height: 108px;
+	height: 124px;
 	width: 100%;
 	max-width: 1300px;
 	margin: 0 auto;
@@ -42,11 +42,11 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
      width: calc(100% - 24px);
      max-width: 1280px;
      margin: 0 auto;
-     height: 92px;
+     height: 84px;
      margin-top: 0px;
      justify-content: space-between; 
      position: fixed; 
-     background-color: transparent;
+     background-color: rgba(255,255,255,0.94);
      z-index: 5;
      left: 50%;
      transform: translateX(-50%);
@@ -172,9 +172,16 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 .main_logo {
 	width: clamp(150px, 17vw, 230px);
+	max-height: 68px;
 	display: block;
 	margin: 0 auto;
 	position: static;
+	object-fit: contain;
+}
+
+#mainLogo a {
+	display: inline-block;
+	line-height: 0;
 }
 
 /*메인로고 사진 "댕댕의 정석"*/
@@ -232,7 +239,7 @@ header, nav, aside, footer, section ,#communitypic, li, span,button, h1, input, 
 
 @media (max-width: 1024px) {
 	.header-main {
-		height: 172px;
+		height: 188px;
 	}
 	.header {
 		height: auto;

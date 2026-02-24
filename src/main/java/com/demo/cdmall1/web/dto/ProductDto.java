@@ -32,6 +32,23 @@ public class ProductDto {
 	
 	@Data
 	@AllArgsConstructor
+	public static class Read {
+		private Integer pno;
+		private String manufacturer;
+		private String name;
+		private String info;
+		private Integer price;
+		private String categoryCode;
+		private Integer stock;
+		private String imageFileName;
+		private Integer goodCnt;
+		private Integer goodCnlCnt;
+		private Double avgOfStar;
+		private Integer reviewCount;
+	}
+
+	@Data
+	@AllArgsConstructor
 	public static class ProductList {
 		private Integer pno;
 		private String manufacturer;

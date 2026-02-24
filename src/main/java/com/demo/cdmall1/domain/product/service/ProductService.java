@@ -55,9 +55,22 @@ public class ProductService {
 	}
 
 	@Transactional(readOnly=true)
-	public Product read(Integer pno) {
+	public ProductDto.Read read(Integer pno) {
 		Product product = dao.findById(pno).orElseThrow(ProductFail.ProductNotFoundException::new);
-		return product;
+		return new ProductDto.Read(
+			product.getPno(),
+			product.getManufacturer(),
+			product.getName(),
+			product.getInfo(),
+			product.getPrice(),
+			product.getCategoryCode(),
+			product.getStock(),
+			product.getImageFileName(),
+			product.getGoodCnt(),
+			product.getGoodCnlCnt(),
+			product.getAvgOfStar(),
+			product.getReviewCount()
+		);
 	}
 	
 	public Boolean checkStock(Integer pno, Integer count) {

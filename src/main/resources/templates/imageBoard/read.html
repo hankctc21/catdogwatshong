@@ -51,7 +51,9 @@
 		$("#title").val(imageBoard.title);
 		$("#report_cnt").text(imageBoard.reportCnt);
 		$("#content").val(imageBoard.content);
-		$("#ibimage").attr("src", "/upload/ibimage/" + imageBoard.imageFileName);
+		$("#ibimage")
+			.attr("src", "/imageBoard/image?imagename=" + encodeURIComponent(imageBoard.imageFileName))
+			.on("error", function() { $(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음"); });
 		
 		// ajax 실행 결과값 isReported true/false	
 		const param = {ibno : imageBoard.ibno};

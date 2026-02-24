@@ -47,7 +47,14 @@
 			// 사진게시판 화면 구성
 			 const $li = $("<li>").appendTo($list);
 			const $figure = $("<figure>").appendTo($li);
-			$("<img>").attr("src", "/upload/ibimage/" + c.imageFileName).css("cursor","pointer").attr("onclick","imageClicked("+ c.ibno +")").attr("class","myPetImg").attr("id", c.ibno+"_"+c.imageFileName).appendTo($figure);
+			$("<img>")
+				.attr("src", "/imageBoard/image?imagename=" + encodeURIComponent(c.imageFileName))
+				.on("error", function() { $(this).attr("src", "/image/product_image.jpg").attr("alt", "이미지 없음"); })
+				.css("cursor","pointer")
+				.attr("onclick","imageClicked("+ c.ibno +")")
+				.attr("class","myPetImg")
+				.attr("id", c.ibno+"_"+c.imageFileName)
+				.appendTo($figure);
 			const $figcaption = $("<figcaption>").appendTo($li);
 			$("<p>").text(c.writer).appendTo($figcaption);  //글쓴이 출력
 			

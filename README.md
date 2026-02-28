@@ -3,7 +3,11 @@
 실사용 흐름(회원가입 → 로그인 → 스토어 탐색/구매 + 커뮤니티 활동)까지 구현한  
 `Spring Boot + Thymeleaf` 기반 하이브리드 웹(커머스 + 커뮤니티) 포트폴리오 프로젝트입니다.
 
-## Live URL
+## Service Status
+- 현재 Oracle Cloud 인스턴스 유료 과금 이슈로 운영을 일시 중단했습니다.
+- 배포 복구 시 Docker Compose 기반으로 동일 구성을 다시 올릴 수 있습니다.
+
+## Previous Live URL
 - **서비스 주소: `http://158.180.70.210:8080`**
 - **헬스체크: `http://158.180.70.210:8080/api/health`**
 

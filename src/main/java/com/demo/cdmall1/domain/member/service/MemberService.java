@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.scheduling.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
@@ -26,6 +27,9 @@ import lombok.*;
 @RequiredArgsConstructor
 @Service
 public class MemberService {
+	@Value("${app.require-email-verification:true}")
+	private boolean requireEmailVerification;
+
 	private final MemberRepository dao;
 	private final MemberDslRepository dslDao;
 	private final AuthorityRepository AuthDao;
@@ -62,13 +66,16 @@ public class MemberService {
 		MultipartFile sajin = dto.getSajin();
 		
 		String profile = ZmallUtil.saveProfile(sajin, member.getUsername());
-		String checkcode = RandomStringUtils.randomAlphanumeric(20);
+		String checkcode = requireEmailVerification ? RandomStringUtils.randomAlphanumeric(20) : null;
 		String encodedPassword = passwordEncoder.encode(member.getPassword());
 		
 		// member에 추가해야 할 필드 : profile, checkcode, 비밀번호, Set<Authority>
 		member.addJoinInfo(profile, checkcode, encodedPassword, Arrays.asList("ROLE_USER"));
+		if (requireEmailVerification == false)
+			member.setEnabled(true);
 		dao.save(member);
-		mailUtil.sendJoinCheckMail("admin@zmall.com", member.getEmail(), checkcode);
+		if (requireEmailVerification)
+			mailUtil.sendJoinCheckMail("admin@zmall.com", member.getEmail(), checkcode);
 	}
 
 	@Transactional

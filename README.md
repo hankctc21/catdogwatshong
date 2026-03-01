@@ -91,6 +91,16 @@ docker compose up -d --build
 - Render 무료 웹 서비스는 SMTP `587` 아웃바운드가 제한되므로, 가입 메일 기능은 별도 메일 API/허용 포트 대응이 필요합니다.
 - Render 무료 PostgreSQL은 공식 문서 기준 30일 후 만료되므로 장기 운영용으로는 부적합합니다.
 
+## Free Tier Recommendation
+- 무료 배포는 `Render Web Service + Neon PostgreSQL` 조합을 권장합니다.
+- 현재 `render.yaml`은 외부 DB 기준으로 맞춰져 있으므로, Render에서 아래 값을 직접 넣으면 됩니다.
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+- `APP_BASE_URL`
+- `APP_MAIL_ENABLED=false`로 두면 Render 무료 플랜의 SMTP 제한을 우회할 수 있습니다.
+- `APP_REQUIRE_EMAIL_VERIFICATION=false`로 두면 회원가입 시 메일 인증 없이 즉시 활성화됩니다.
+
 ## Portfolio Highlights (Recruiter Focus)
 - 하이브리드 서비스 설계: 스토어와 커뮤니티를 단일 인증/권한 체계로 통합
 - 도메인 연결 능력: 인증/인가, 주문, 리뷰, 게시판 기능을 하나의 서비스 흐름으로 구현

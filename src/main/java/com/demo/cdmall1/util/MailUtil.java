@@ -18,6 +18,12 @@ public class MailUtil {
 
 	@Value("${app.base-url:}")
 	private String appBaseUrl;
+
+	@Value("${app.mail.enabled:true}")
+	private boolean mailEnabled;
+
+	@Value("${spring.mail.username:}")
+	private String mailUsername;
 	
 	public void sendJoinCheckMail(String from, String to, String checkCode) {
 		Mail mail = Mail.builder().from(from).to(to).subject("가입 확인 메일").build();
@@ -51,6 +57,9 @@ public class MailUtil {
 	}
 	
 	private void sendMail(Mail mail) {
+		if (mailEnabled == false || StringUtils.hasText(mailUsername) == false) {
+			return;
+		}
 		MimeMessage message = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper;
 		try {

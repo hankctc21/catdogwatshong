@@ -7,34 +7,30 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: catdogwatshong-db
-          property: connectionString
+        sync: false
       - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: catdogwatshong-db
-          property: user
+        sync: false
       - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: catdogwatshong-db
-          property: password
+        sync: false
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
         value: update
       - key: APP_BASE_URL
         sync: false
+      - key: APP_MAIL_ENABLED
+        value: false
+      - key: APP_REQUIRE_EMAIL_VERIFICATION
+        value: false
       - key: SPRING_MAIL_USERNAME
         sync: false
       - key: SPRING_MAIL_PASSWORD
         sync: false
+      - key: APP_SCHEDULER_POOL_SIZE
+        value: 2
+      - key: JAVA_OPTS
+        value: -XX:MaxRAMPercentage=70 -XX:InitialRAMPercentage=25 -XX:+UseSerialGC -Djava.security.egd=file:/dev/./urandom
       - key: RESOURCE_PATH
         value: file:/app/upload/
       - key: APP_UPLOAD_PRODUCTIMAGE_DIR
         value: /app/upload/productimage
       - key: UPLOAD_PATH
         value: /upload/**
-
-databases:
-  - name: catdogwatshong-db
-    databaseName: catdogwatshong
-    user: catdogwatshong
-    plan: free

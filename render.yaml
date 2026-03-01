@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: catdogwatshong
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: catdogwatshong-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: catdogwatshong-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: catdogwatshong-db
+          property: password
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: APP_BASE_URL
+        sync: false
+      - key: SPRING_MAIL_USERNAME
+        sync: false
+      - key: SPRING_MAIL_PASSWORD
+        sync: false
+      - key: RESOURCE_PATH
+        value: file:/app/upload/
+      - key: APP_UPLOAD_PRODUCTIMAGE_DIR
+        value: /app/upload/productimage
+      - key: UPLOAD_PATH
+        value: /upload/**
+
+databases:
+  - name: catdogwatshong-db
+    databaseName: catdogwatshong
+    user: catdogwatshong
+    plan: free

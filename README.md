@@ -10,6 +10,8 @@
 ## Previous Live URL
 - **서비스 주소: `http://158.180.70.210:8080`**
 - **헬스체크: `http://158.180.70.210:8080/api/health`**
+- 현재 위 주소는 사용하지 않습니다.
+- 새 무료 클라우드 환경(Render + Neon)으로 재배포를 진행 중입니다.
 
 ## Why This Project
 - 서버 사이드 렌더링(SSR) 구조에서 `스토어 도메인`과 `커뮤니티 도메인`을 한 서비스 안에서 함께 운영하는 경험을 보여주기 위해 만들었습니다.
@@ -99,10 +101,11 @@ docker compose up -d --build
 - 메일 인증은 `APP_REQUIRE_EMAIL_VERIFICATION=false`
 
 ## GitHub Actions Image Publish
-`main` 브랜치에 푸시하면 GitHub Actions가 Docker 이미지를 빌드해서 GHCR에 업로드합니다.
+`main` 브랜치에 푸시하면 GitHub Actions가 먼저 JAR를 빌드한 뒤, 런타임 전용 Docker 이미지를 만들어 GHCR에 업로드합니다.
 
 - 이미지 최신 태그: `ghcr.io/hankctc21/catdogwatshong:latest`
 - 이미지 커밋 태그: `ghcr.io/hankctc21/catdogwatshong:sha-<commit>`
+- 이미지 빌드에는 루트의 `Dockerfile.render`를 사용합니다.
 
 첫 배포 순서:
 1. GitHub Actions 탭에서 `Publish Render Image` workflow 성공 확인

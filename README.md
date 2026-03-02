@@ -85,21 +85,45 @@ docker compose up -d --build
 - `APP_UPLOAD_PRODUCTIMAGE_DIR` (default: `/app/upload/productimage`)
 
 ## Render Deployment
-- 루트의 `render.yaml`을 사용하면 웹 서비스와 PostgreSQL을 함께 생성할 수 있습니다.
-- 기본 흐름: GitHub 저장소 연결 -> Render에서 Blueprint 배포 -> 민감값만 입력
-- 무료 플랜은 슬립/용량 제한이 있으므로 포트폴리오 공개용으로 적합합니다.
+- Render 무료 인스턴스는 빌드 메모리가 매우 작아서, 이 프로젝트는 `Render에서 직접 Docker 빌드`하면 실패할 수 있습니다.
+- 무료 배포는 `GitHub Actions -> GHCR(Container Registry) -> Render Existing Image + Neon PostgreSQL` 조합을 권장합니다.
+- `render.yaml`은 환경변수 참조용으로 유지하고, 실제 무료 배포는 Render Dashboard에서 `Existing Image` 방식으로 생성하는 것을 기준으로 합니다.
 - Render 무료 웹 서비스는 SMTP `587` 아웃바운드가 제한되므로, 가입 메일 기능은 별도 메일 API/허용 포트 대응이 필요합니다.
 - Render 무료 PostgreSQL은 공식 문서 기준 30일 후 만료되므로 장기 운영용으로는 부적합합니다.
 
 ## Free Tier Recommendation
-- 무료 배포는 `Render Web Service + Neon PostgreSQL` 조합을 권장합니다.
-- 현재 `render.yaml`은 외부 DB 기준으로 맞춰져 있으므로, Render에서 아래 값을 직접 넣으면 됩니다.
+- 앱: `Render Existing Image`
+- 이미지: `ghcr.io/hankctc21/catdogwatshong:latest`
+- DB: `Neon PostgreSQL`
+- 회원가입 메일은 `APP_MAIL_ENABLED=false`
+- 메일 인증은 `APP_REQUIRE_EMAIL_VERIFICATION=false`
+
+## GitHub Actions Image Publish
+`main` 브랜치에 푸시하면 GitHub Actions가 Docker 이미지를 빌드해서 GHCR에 업로드합니다.
+
+- 이미지 최신 태그: `ghcr.io/hankctc21/catdogwatshong:latest`
+- 이미지 커밋 태그: `ghcr.io/hankctc21/catdogwatshong:sha-<commit>`
+
+첫 배포 순서:
+1. GitHub Actions 탭에서 `Publish Render Image` workflow 성공 확인
+2. GitHub Packages에서 `catdogwatshong` 컨테이너 패키지를 `public`으로 변경
+3. Render에서 `New + -> Web Service -> Existing Image` 선택
+4. 이미지 URL에 `ghcr.io/hankctc21/catdogwatshong:latest` 입력
+5. 아래 환경변수 입력
+
+필수 환경변수:
 - `SPRING_DATASOURCE_URL`
 - `SPRING_DATASOURCE_USERNAME`
 - `SPRING_DATASOURCE_PASSWORD`
 - `APP_BASE_URL`
-- `APP_MAIL_ENABLED=false`로 두면 Render 무료 플랜의 SMTP 제한을 우회할 수 있습니다.
-- `APP_REQUIRE_EMAIL_VERIFICATION=false`로 두면 회원가입 시 메일 인증 없이 즉시 활성화됩니다.
+- `APP_MAIL_ENABLED=false`
+- `APP_REQUIRE_EMAIL_VERIFICATION=false`
+- `SPRING_JPA_HIBERNATE_DDL_AUTO=update`
+- `JAVA_OPTS=-XX:MaxRAMPercentage=50 -XX:InitialRAMPercentage=10 -XX:MaxMetaspaceSize=128m -Xss256k -XX:+UseSerialGC -Djava.security.egd=file:/dev/./urandom`
+- `APP_SCHEDULER_POOL_SIZE=2`
+- `RESOURCE_PATH=file:/app/upload/`
+- `APP_UPLOAD_PRODUCTIMAGE_DIR=/app/upload/productimage`
+- `UPLOAD_PATH=/upload/**`
 
 ## Portfolio Highlights (Recruiter Focus)
 - 하이브리드 서비스 설계: 스토어와 커뮤니티를 단일 인증/권한 체계로 통합

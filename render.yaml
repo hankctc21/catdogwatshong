@@ -27,7 +27,7 @@ services:
       - key: APP_SCHEDULER_POOL_SIZE
         value: 2
       - key: JAVA_OPTS
-        value: -XX:MaxRAMPercentage=70 -XX:InitialRAMPercentage=25 -XX:+UseSerialGC -Djava.security.egd=file:/dev/./urandom
+        value: -XX:MaxRAMPercentage=50 -XX:InitialRAMPercentage=10 -XX:MaxMetaspaceSize=128m -Xss256k -XX:+UseSerialGC -Djava.security.egd=file:/dev/./urandom
       - key: RESOURCE_PATH
         value: file:/app/upload/
       - key: APP_UPLOAD_PRODUCTIMAGE_DIR
